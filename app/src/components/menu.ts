@@ -218,7 +218,7 @@ export function createMenu({
     role: 'help',
     submenu: [
       {
-        label: `Construido con tecnologia de PixelWorld y electron + nativefier v${nativefierVersion}`,
+        label: `Construido con tecnologia de PixelWorld y Electron + Nativefier v${nativefierVersion}`,
         click: () => {
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
           shell.openExternal('https://discord.gg/C6XR9nB');
