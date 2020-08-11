@@ -1,0 +1,5 @@
+#######################################################
+#       Comando para construir Aplicación web         #
+#######################################################
+
+nativefier --icon /home/christopher/Escritorio/Archivos/pixelworld/nativefier/recursos/pixelworld.ico -n PixelWorld-Panel -p windows --maximize --disable-context-menu --disable-dev-tools --build-version 1.2 --app-version 1.4 https://panel.pixelworld.ml/

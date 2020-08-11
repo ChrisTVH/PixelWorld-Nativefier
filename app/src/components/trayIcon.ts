@@ -27,7 +27,7 @@ export function createTrayIcon(
         click: onClick,
       },
       {
-        label: 'Quit',
+        label: 'Salir',
         click: app.exit.bind(this),
       },
     ]);

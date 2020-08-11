@@ -182,11 +182,11 @@ export function createMainWindow(
   const clearAppData = async (): Promise<void> => {
     const response = await dialog.showMessageBox(mainWindow, {
       type: 'warning',
-      buttons: ['Yes', 'Cancel'],
+      buttons: ['Estoy Seguro(a)', 'No estoy Seguro(a)'],
       defaultId: 1,
-      title: 'Clear cache confirmation',
+      title: 'Borrar datos en Caché',
       message:
-        'This will clear all data (cookies, local storage etc) from this app. Are you sure you wish to proceed?',
+        'Esto borrará todos los datos (cookies, almacenamiento local, etc.) de esta aplicación. ¿Seguro que desea continuar?',
     });
 
     if (response.response !== 0) {
@@ -213,9 +213,9 @@ export function createMainWindow(
   const onBlockedExternalUrl = (url: string) => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     dialog.showMessageBox(mainWindow, {
-      message: `Cannot navigate to external URL: ${url}`,
+      message: `No puedo navegar a una URL externa: ${url}`,
       type: 'error',
-      title: 'Navigation blocked',
+      title: 'Navegación Bloqueada',
     });
   };
 

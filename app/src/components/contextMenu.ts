@@ -7,20 +7,20 @@ export function initContextMenu(createNewWindow, createNewTab): void {
       const items = [];
       if (params.linkURL) {
         items.push({
-          label: 'Open Link in Default Browser',
+          label: 'Abrir enlace en el navegador predeterminado',
           click: () => {
             shell.openExternal(params.linkURL); // eslint-disable-line @typescript-eslint/no-floating-promises
           },
         });
         items.push({
-          label: 'Open Link in New Window',
+          label: 'Abrir enlace en una nueva ventana',
           click: () => {
             createNewWindow(params.linkURL);
           },
         });
         if (createNewTab) {
           items.push({
-            label: 'Open Link in New Tab',
+            label: 'Abrir enlace en una nueva pestaña',
             click: () => {
               createNewTab(params.linkURL, false);
             },

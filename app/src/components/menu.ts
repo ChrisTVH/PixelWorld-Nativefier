@@ -15,19 +15,19 @@ export function createMenu({
 }): void {
   const zoomResetLabel =
     zoomBuildTimeValue === 1.0
-      ? 'Reset Zoom'
-      : `Reset Zoom (to ${zoomBuildTimeValue * 100}%, set at build time)`;
+      ? 'Restablecer Zoom'
+      : `Restablecer zoom (a ${zoomBuildTimeValue * 100}%, establecido en el momento de la construcción)`;
 
   const editMenu: MenuItemConstructorOptions = {
-    label: '&Edit',
+    label: '&Editar',
     submenu: [
       {
-        label: 'Undo',
+        label: 'Deshacer',
         accelerator: 'CmdOrCtrl+Z',
         role: 'undo',
       },
       {
-        label: 'Redo',
+        label: 'Rehacer',
         accelerator: 'Shift+CmdOrCtrl+Z',
         role: 'redo',
       },
@@ -35,17 +35,17 @@ export function createMenu({
         type: 'separator',
       },
       {
-        label: 'Cut',
+        label: 'Cortar',
         accelerator: 'CmdOrCtrl+X',
         role: 'cut',
       },
       {
-        label: 'Copy',
+        label: 'Copiar',
         accelerator: 'CmdOrCtrl+C',
         role: 'copy',
       },
       {
-        label: 'Copy Current URL',
+        label: 'Copiar URL actual',
         accelerator: 'CmdOrCtrl+L',
         click: () => {
           const currentURL = getCurrentUrl();
@@ -53,32 +53,32 @@ export function createMenu({
         },
       },
       {
-        label: 'Paste',
+        label: 'Pegar',
         accelerator: 'CmdOrCtrl+V',
         role: 'paste',
       },
       {
-        label: 'Paste and Match Style',
+        label: 'Pegar y combinar estilo',
         accelerator: 'CmdOrCtrl+Shift+V',
         role: 'pasteAndMatchStyle',
       },
       {
-        label: 'Select All',
+        label: 'Seleccionar Todo',
         accelerator: 'CmdOrCtrl+A',
         role: 'selectAll',
       },
       {
-        label: 'Clear App Data',
+        label: 'Borrar datos de la aplicación',
         click: clearAppData,
       },
     ],
   };
 
   const viewMenu: MenuItemConstructorOptions = {
-    label: '&View',
+    label: '&Ver',
     submenu: [
       {
-        label: 'Back',
+        label: 'Atras',
         accelerator: (() => {
           const backKbShortcut =
             process.platform === 'darwin' ? 'Cmd+Left' : 'Alt+Left';
@@ -87,14 +87,14 @@ export function createMenu({
         click: goBack,
       },
       {
-        label: 'BackAdditionalShortcut',
+        label: 'AtrásAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
         accelerator: 'CmdOrCtrl+[', // What old versions of Nativefier used, kept for backwards compat
         click: goBack,
       },
       {
-        label: 'Forward',
+        label: 'Siguiente',
         accelerator: (() => {
           const forwardKbShortcut =
             process.platform === 'darwin' ? 'Cmd+Right' : 'Alt+Right';
@@ -103,14 +103,14 @@ export function createMenu({
         click: goForward,
       },
       {
-        label: 'ForwardAdditionalShortcut',
+        label: 'AdelanteAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
         accelerator: 'CmdOrCtrl+]', // What old versions of Nativefier used, kept for backwards compat
         click: goForward,
       },
       {
-        label: 'Reload',
+        label: 'Recargar',
         accelerator: 'CmdOrCtrl+R',
         click: (item, focusedWindow) => {
           if (focusedWindow) {
@@ -122,7 +122,7 @@ export function createMenu({
         type: 'separator',
       },
       {
-        label: 'Toggle Full Screen',
+        label: 'Alternar pantalla completa',
         accelerator: (() => {
           if (process.platform === 'darwin') {
             return 'Ctrl+Cmd+F';
@@ -136,24 +136,24 @@ export function createMenu({
         },
       },
       {
-        label: 'Zoom In',
+        label: 'Acercarse',
         accelerator: 'CmdOrCtrl+=',
         click: zoomIn,
       },
       {
-        label: 'ZoomInAdditionalShortcut',
+        label: 'AcercarseAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
         accelerator: 'CmdOrCtrl+numadd',
         click: zoomIn,
       },
       {
-        label: 'Zoom Out',
+        label: 'Alejarse',
         accelerator: 'CmdOrCtrl+-',
         click: zoomOut,
       },
       {
-        label: 'ZoomOutAdditionalShortcut',
+        label: 'AlejarseAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
         accelerator: 'CmdOrCtrl+numsub',
@@ -165,7 +165,7 @@ export function createMenu({
         click: zoomReset,
       },
       {
-        label: 'ZoomResetAdditionalShortcut',
+        label: 'ResetearAcercamientoAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
         accelerator: 'CmdOrCtrl+num0',
@@ -180,7 +180,7 @@ export function createMenu({
         type: 'separator',
       },
       {
-        label: 'Toggle Developer Tools',
+        label: 'Alternar herramientas para desarrolladores',
         accelerator: (() => {
           if (process.platform === 'darwin') {
             return 'Alt+Cmd+I';
@@ -197,7 +197,7 @@ export function createMenu({
   }
 
   const windowMenu: MenuItemConstructorOptions = {
-    label: '&Window',
+    label: '&Ventana',
     role: 'window',
     submenu: [
       {
@@ -206,7 +206,7 @@ export function createMenu({
         role: 'minimize',
       },
       {
-        label: 'Close',
+        label: 'Cerrar',
         accelerator: 'CmdOrCtrl+W',
         role: 'close',
       },
@@ -214,21 +214,21 @@ export function createMenu({
   };
 
   const helpMenu: MenuItemConstructorOptions = {
-    label: '&Help',
+    label: '&Ayuda',
     role: 'help',
     submenu: [
       {
-        label: `Built with Nativefier v${nativefierVersion}`,
+        label: `Construido con tecnologia de PixelWorld y electron + nativefier v${nativefierVersion}`,
         click: () => {
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          shell.openExternal('https://github.com/jiahaog/nativefier');
+          shell.openExternal('https://discord.gg/C6XR9nB');
         },
       },
       {
-        label: 'Report an Issue',
+        label: 'Reportar un problema',
         click: () => {
           // eslint-disable-next-line @typescript-eslint/no-floating-promises
-          shell.openExternal('https://github.com/jiahaog/nativefier/issues');
+          shell.openExternal('https://discord.gg/C6XR9nB');
         },
       },
     ],
@@ -241,7 +241,7 @@ export function createMenu({
       label: 'E&lectron',
       submenu: [
         {
-          label: 'Services',
+          label: 'Servicios',
           role: 'services',
           submenu: [],
         },
@@ -249,24 +249,24 @@ export function createMenu({
           type: 'separator',
         },
         {
-          label: 'Hide App',
+          label: 'Esconder App',
           accelerator: 'Cmd+H',
           role: 'hide',
         },
         {
-          label: 'Hide Others',
+          label: 'Ocultar a otros',
           accelerator: 'Cmd+Shift+H',
           role: 'hideOthers',
         },
         {
-          label: 'Show All',
+          label: 'Mostrar todo',
           role: 'unhide',
         },
         {
           type: 'separator',
         },
         {
-          label: 'Quit',
+          label: 'Salir',
           accelerator: 'Cmd+Q',
           click: appQuit,
         },
@@ -277,7 +277,7 @@ export function createMenu({
         type: 'separator',
       },
       {
-        label: 'Bring All to Front',
+        label: 'Traer todo al frente',
         role: 'front',
       },
     );
