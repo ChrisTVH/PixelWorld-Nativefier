@@ -65,9 +65,12 @@ pero es doloroso hacerlo manualmente. Hágase un favor e instale un
 - Para ejecutar todas las pruebas, `npm t`
 - Para ejecutar solo pruebas unitarias, `npm run test:unit`
 - Para ejecutar solo pruebas de integración, `npm run test:integration`
-- El registro se suprime por defecto en las pruebas, para evitar contaminar la salida de Jest.
+- El registro se suprime por defecto en las pruebas, para evitar contaminar
+  la salida de Jest.
   Para obtener registros de depuración, `npm run test:withlog` o establecer el `LOGLEVEL` env. var.
-- Para una buena experiencia en vivo, abra dos paneles / pestañas de terminal que ejecutan observadores de código / pruebas:
+- Para una buena experiencia en vivo, abra dos paneles / pestañas de terminal que
+  ejecutan observadores de código / pruebas:
   1. Ejecute un observador de TSC: `npm run build:watch`
   2. Ejecute un observador de pruebas unitarias de Jest: `npm run test:watch`
-- Alternativamente, puede ejecutar ambos procesos de prueba en la misma terminal ejecutando: `npm run watch`
+- Alternativamente, puede ejecutar ambos procesos de prueba en la misma terminal
+ejecutando: `npm run watch`
