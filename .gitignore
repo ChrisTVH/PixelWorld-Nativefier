@@ -52,3 +52,6 @@ gen
 
 # Builds when testing npm pack
 nativefier*.tgz
+
+# Carpetas innesesarias
+recursos
