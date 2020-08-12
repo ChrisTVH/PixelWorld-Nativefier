@@ -1,17 +1,17 @@
 import { normalizeUrl } from './normalizeUrl';
 
-test('una URL adecuada no debe estar alterada', () => {
+test("a proper URL shouldn't be mangled", () => {
   expect(normalizeUrl('http://www.google.com')).toEqual(
     'http://www.google.com/',
   );
 });
 
-test('el protocolo que falta debe ser https', () => {
+test('missing protocol should default to https', () => {
   expect(normalizeUrl('www.google.com')).toEqual('https://www.google.com/');
 });
 
-test('una URL adecuada no debe estar alterada', () => {
+test("a proper URL shouldn't be mangled", () => {
   expect(() => {
     normalizeUrl('http://ssddfoo bar');
-  }).toThrow('Tu url "http://ssddfoo bar" Es invalido');
+  }).toThrow('Your url "http://ssddfoo bar" is invalid');
 });

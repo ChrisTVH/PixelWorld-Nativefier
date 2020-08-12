@@ -21,15 +21,15 @@ const ICON_PARAMS_NEEDS_INFER = {
   },
 };
 
-describe('cuando se pasa el parámetro de icono', () => {
-  test('debería devolver el parámetro de icono', async () => {
+describe('when the icon parameter is passed', () => {
+  test('it should return the icon parameter', async () => {
     expect(inferIcon).toHaveBeenCalledTimes(0);
     await expect(icon(ICON_PARAMS_PROVIDED)).resolves.toBe(null);
   });
 });
 
-describe('cuando no se pasa el parámetro del icono', () => {
-  test('debería llamar inferIcon', async () => {
+describe('when the icon parameter is not passed', () => {
+  test('it should call inferIcon', async () => {
     (inferIcon as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve(mockedResult),
     );
@@ -42,8 +42,8 @@ describe('cuando no se pasa el parámetro del icono', () => {
     );
   });
 
-  describe('cuando inferIcon se resuelve con un error', () => {
-    test('debería manejar el error', async () => {
+  describe('when inferIcon resolves with an error', () => {
+    test('it should handle the error', async () => {
       (inferIcon as jest.Mock).mockImplementationOnce(() =>
         Promise.reject(new Error('some error')),
       );

@@ -19,8 +19,6 @@ export function sanitizeFilename(
   if (platform === 'linux') {
     result = result.replace(/ /g, '');
   }
-  log.debug(
-    `Nombre de archivo desinfectado para ${filenameToSanitize} : ${result}`,
-  );
+  log.debug(`Sanitized filename for ${filenameToSanitize} : ${result}`);
   return result;
 }

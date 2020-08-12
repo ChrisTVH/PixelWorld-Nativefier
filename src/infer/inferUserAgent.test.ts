@@ -8,8 +8,8 @@ const EXPECTED_USERAGENTS = {
   linux: `Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${DEFAULT_CHROME_VERSION} Safari/537.36`,
 };
 
-describe('Agente de usuario inferido', () => {
-  test('Puede inferir userAgent para todas las plataformas', async () => {
+describe('Infer User Agent', () => {
+  test('Can infer userAgent for all platforms', async () => {
     jest.setTimeout(10000);
     for (const [arch, archUa] of Object.entries(EXPECTED_USERAGENTS)) {
       const ua = await inferUserAgent(DEFAULT_ELECTRON_VERSION, arch);
@@ -18,7 +18,7 @@ describe('Agente de usuario inferido', () => {
   });
 
   // TODO make fast by mocking timeout, and un-skip
-  test.skip('El error de conexión seguirá obteniendo un agente de usuario', async () => {
+  test.skip('Connection error will still get a user agent', async () => {
     jest.setTimeout(6000);
 
     const TIMEOUT_URL = 'http://www.google.com:81/';

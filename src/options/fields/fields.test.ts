@@ -1,30 +1,30 @@
 import { processOptions } from './fields';
 
-test('Las opciones asincrónicas completamente definidas se devuelven tal cual', async () => {
+test('fully-defined async options are returned as-is', async () => {
   const options = {
     packager: {
-      icon: '/mi/icon.png',
-      name: 'mi hermosa aplicacion ',
-      targetUrl: 'https://miurl.com',
-      dir: '/tmp/miapp',
+      icon: '/my/icon.png',
+      name: 'my beautiful app ',
+      targetUrl: 'https://myurl.com',
+      dir: '/tmp/myapp',
     },
-    nativefier: { userAgent: 'agente de usuario aleatorio' },
+    nativefier: { userAgent: 'random user agent' },
   };
   // @ts-ignore
   await processOptions(options);
 
-  expect(options.packager.icon).toEqual('/mi/icon.png');
-  expect(options.packager.name).toEqual('mi hermosa aplicacion');
-  expect(options.nativefier.userAgent).toEqual('agente de usuario aleatorio');
+  expect(options.packager.icon).toEqual('/my/icon.png');
+  expect(options.packager.name).toEqual('my beautiful app');
+  expect(options.nativefier.userAgent).toEqual('random user agent');
 });
 
-test('El agente de usuario se infiere si no se pasa', async () => {
+test('user agent is inferred if not passed', async () => {
   const options = {
     packager: {
-      icon: '/mi/icon.png',
-      name: 'mi hermosa aplicacion ',
-      targetUrl: 'https://miurl.com',
-      dir: '/tmp/miapp',
+      icon: '/my/icon.png',
+      name: 'my beautiful app ',
+      targetUrl: 'https://myurl.com',
+      dir: '/tmp/myapp',
       platform: 'linux',
     },
     nativefier: { userAgent: undefined },

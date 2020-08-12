@@ -7,9 +7,9 @@ function appendProtocol(inputUrl: string): string {
   if (!parsed.protocol) {
     const urlWithProtocol = `https://${inputUrl}`;
     log.warn(
-      `URL "${inputUrl}" carece de un protocolo.`,
-      `Intentará analizarlo como HTTPS: "${urlWithProtocol}".`,
-      `Por favor pase "http://${inputUrl}" si esto es lo que quisiste decir.`,
+      `URL "${inputUrl}" lacks a protocol.`,
+      `Will try to parse it as HTTPS: "${urlWithProtocol}".`,
+      `Please pass "http://${inputUrl}" if this is what you meant.`,
     );
     return urlWithProtocol;
   }
@@ -23,9 +23,9 @@ export function normalizeUrl(urlToNormalize: string): string {
   try {
     parsedUrl = new url.URL(urlWithProtocol);
   } catch (err) {
-    throw `Tu url "${urlWithProtocol}" Es invalido`;
+    throw `Your url "${urlWithProtocol}" is invalid`;
   }
   const normalizedUrl = parsedUrl.toString();
-  log.debug(`URL normalizada ${urlToNormalize} a:`, normalizedUrl);
+  log.debug(`Normalized URL ${urlToNormalize} to:`, normalizedUrl);
   return normalizedUrl;
 }
