@@ -3,6 +3,7 @@
   "version": "9.2.1",
   "description": "Envuelva aplicaciones web de forma nativa",
   "license": "MIT",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/"},
   "author": "ChrisTVH",
   "engines": {
     "node": ">= 10.0.0",
