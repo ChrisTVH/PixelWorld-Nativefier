@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ChrisTVH/PixelWorld-Nativefier.svg?branch=master)](https://travis-ci.org/ChrisTVH/PixelWorld-Nativefier)
+
 # Guía de desarrollo
 
 ## Preparar
