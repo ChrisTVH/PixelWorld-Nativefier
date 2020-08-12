@@ -1,5 +1,5 @@
 FROM node:12-stretch
-LABEL description="Debian image to build nativefier apps"
+LABEL description="Imagen de Debian para crear aplicaciones nativefier"
 
 # Get wine32, not 64, to work around binary incompatibility with rcedit.
 # https://github.com/jiahaog/nativefier/issues/375#issuecomment-304247033
