@@ -34,7 +34,7 @@ Instale dependencias tanto para la CLI como para la aplicación Electron:
 
 ```bash
 # Bajo Linux y macOS:
-sudo npm run dev-up
+npm run dev-up
 
 # Bajo Windows:
 npm run dev-up-win
@@ -43,7 +43,7 @@ npm run dev-up-win
 Construir nativefier:
 
 ```bash
-sudo npm run build
+npm run build
 ```
 
 Configure un enlace simbólico para que la ejecución de `nativefier` llame a su versión de desarrollo con sus cambios:
