@@ -1,5 +1,24 @@
 [![Build Status](https://travis-ci.org/ChrisTVH/PixelWorld-Nativefier.svg?branch=master)](https://travis-ci.org/ChrisTVH/PixelWorld-Nativefier)
 
+## Introducción
+
+- Para comenzar a utilizarlo requiere las siguiente
+- Plataformas: macOS 10.9+ / Windows / Linux
+
+# Dependencias
+
+- Node.js >= 10 y npm >= 6
+- Opcionales: ImageMagick y Wine
+
+# Instalacón
+
+```bash
+npm install -g pixelworld-nativefier
+```
+
+- Si le aparece algún error trate de ejecutarlo con sudo
+
+
 # Guía de desarrollo
 
 ## Preparar
