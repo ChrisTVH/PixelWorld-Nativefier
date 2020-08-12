@@ -4,22 +4,25 @@ os:
 - osx
 - windows
 node_js:
-- '14'
+- '14' # Changing this? Remind to keep linter+deploy conditions below aligned
 - '12'
 - '10'
 install:
 - npm run dev-up
 - npm run build
 script:
-- if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$TRAVIS_NODE_VERSION" = "14" ]; then npm
-  run lint; fi
+# Only run linter once, for faster CI. Remind to keep linter+deploy conditions below aligned
+- if [ "$TRAVIS_OS_NAME" = "linux" ] && [ "$TRAVIS_NODE_VERSION" = "14" ]; then npm run lint; fi
 - npm test
+# https://docs.travis-ci.com/user/deployment
 deploy:
   provider: npm
+  skip_cleanup: true
   email: cristoferherame@gmail.com
-  api_key:
+  api_token:
     secure: ic66E8tCUn0H2Ixe0ikYymuOC6EJfRmAzRFCQNJrxgst7DzWrb/3hYW1WKvQRfvuCjSHm6oIBP0iPedosipLDtO9YjWeNYCUN1w9HlRqi3mY8zFMN8eKNWXfW1OE7bei8QE+1zCD3MMvMzdYdRGbzy2XakKsrdV/vv0eCo5CdkemDdNBY5od9HPxpKX0YEfH+Yr8A/EtDoW05+9+oIJgh9rTdlqZFtFaXFrlewVoIZrgSruYiy7n0DJwkzh94G0nVHHVh1F0/wTfY9i8dA2GCMK7cgVuJAAvZbmoS5KjClKBQzgPjx+zYqDPULQYGUK/Sr/aN4wdS/5PQ7+z9FniDZguMCBPnaQz59plR+G5yLsQlqkf5bHx9VL9jIKVelJ2Er6G3y+k11N2x7np1pAoHCcZJxLFzA5qP/7iW6jQJQtUy6te+ygPuTrKfgHpEdgcmK8BRm5ZgE3Go8CURf4r7MVYdPnPstC08mkYiRaxqxL0rs07Z3O2X+EaDKAUM1vy57j/nTUWJBJdWQg6+s5H9/p5EJigYlUlNUROQr8ETTOnAY31YBacM37ircgcU/eaqAS4VQFjpZbJHbXltqk271D6N53/mezU3AdP2AWEDZUpFn1NzTyxrpWtMb3jflMe0cPNwskeSiSPv7T8cSrukIdOkoRUWXS/UIOswidLykc=
   on:
     tags: true
     repo: ChrisTVH/PixelWorld-Nativefier
-  skip_cleanup: 'true'
+    node_js: '14' # Remind to keep linter+deploy conditions above aligned
+    condition: '$TRAVIS_OS_NAME = linux'
