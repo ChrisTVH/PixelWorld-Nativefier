@@ -18,8 +18,8 @@ describe('reemplazando caracteres no ascii', () => {
 
 describe('cuando la plataforma es linux', () => {
   test('debe devolver un nombre sin espacios', () => {
-    const param = 'algún nombre';
-    const expectedResult = 'algúnnombre';
+    const param = 'somename';
+    const expectedResult = 'somename';
     const result = sanitizeFilename('linux', param);
     expect(result).toBe(expectedResult);
   });

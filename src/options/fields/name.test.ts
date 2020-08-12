@@ -100,7 +100,7 @@ describe('manejo de resultados inferTitle', () => {
   });
 
   test('debería devolver el nombre de la aplicación predeterminada cuando inferTitle rechaza', async () => {
-    (inferTitle as jest.Mock).mockRejectedValue('algún error');
+    (inferTitle as jest.Mock).mockRejectedValue('some error');
     const result = await name(NAME_PARAMS_NEEDS_INFER);
 
     expect(result).toEqual(DEFAULT_APP_NAME);

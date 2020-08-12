@@ -45,7 +45,7 @@ describe('cuando no se pasa el parámetro del icono', () => {
   describe('cuando inferIcon se resuelve con un error', () => {
     test('debería manejar el error', async () => {
       (inferIcon as jest.Mock).mockImplementationOnce(() =>
-        Promise.reject(new Error('algún error')),
+        Promise.reject(new Error('some error')),
       );
       const result = await icon(ICON_PARAMS_NEEDS_INFER);
 

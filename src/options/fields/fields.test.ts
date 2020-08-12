@@ -4,7 +4,7 @@ test('Las opciones asincrónicas completamente definidas se devuelven tal cual',
   const options = {
     packager: {
       icon: '/mi/icon.png',
-      name: 'mi hermosa aplicación ',
+      name: 'mi hermosa aplicacion ',
       targetUrl: 'https://miurl.com',
       dir: '/tmp/miapp',
     },
@@ -14,7 +14,7 @@ test('Las opciones asincrónicas completamente definidas se devuelven tal cual',
   await processOptions(options);
 
   expect(options.packager.icon).toEqual('/mi/icon.png');
-  expect(options.packager.name).toEqual('mi hermosa aplicación');
+  expect(options.packager.name).toEqual('mi hermosa aplicacion');
   expect(options.nativefier.userAgent).toEqual('agente de usuario aleatorio');
 });
 
@@ -22,7 +22,7 @@ test('El agente de usuario se infiere si no se pasa', async () => {
   const options = {
     packager: {
       icon: '/mi/icon.png',
-      name: 'mi hermosa aplicación ',
+      name: 'mi hermosa aplicacion ',
       targetUrl: 'https://miurl.com',
       dir: '/tmp/miapp',
       platform: 'linux',

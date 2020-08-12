@@ -13,5 +13,5 @@ test('el protocolo que falta debe ser https', () => {
 test('una URL adecuada no debe estar alterada', () => {
   expect(() => {
     normalizeUrl('http://ssddfoo bar');
-  }).toThrow('Your url "http://ssddfoo bar" Es invalido');
+  }).toThrow('Tu url "http://ssddfoo bar" Es invalido');
 });
