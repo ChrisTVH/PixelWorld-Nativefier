@@ -59,7 +59,7 @@ function checkInternet(): void {
   dns.lookup('npmjs.com', (err) => {
     if (err && err.code === 'ENOTFOUND') {
       log.warn(
-        '\nNo Internet Connection\nTo offline build, download electron from https://github.com/electron/electron/releases\nand place in ~/AppData/Local/electron/Cache/ on Windows,\n~/.cache/electron on Linux or ~/Library/Caches/electron/ on Mac\nUse --electron-version to specify the version you downloaded.',
+        '\nSin conexión a Internet\nPara compilar sin conexión, descargue electron desde https://github.com/electron/electron/releases\ny colocar en ~/AppData/Local/electron/Cache/ en Windows,\n~/.cache/electron en Linux or ~/Library/Caches/electron/ en Mac\nUse --electron-version para especificar la versión que descargó.',
       );
     }
   });
@@ -94,200 +94,229 @@ if (require.main === module) {
       positionalOptions.targetUrl = url;
       positionalOptions.out = outputDirectory;
     })
-    .option('-n, --name <value>', 'app name')
-    .option('-p, --platform <value>', "'mac', 'mas', 'linux' or 'windows'")
-    .option('-a, --arch <value>', "'ia32' or 'x64' or 'armv7l'")
+    .option('-n, --name <valor>', 'nombre de la app')
+    .option('-p, --platform <valor>', "'mac', 'mas', 'linux' o 'windows'")
+    .option('-a, --arch <valor>', "'ia32' o 'x64' o 'armv7l'")
     .option(
-      '--app-version <value>',
-      '(macOS, windows only) the version of the app. Maps to the `ProductVersion` metadata property on Windows, and `CFBundleShortVersionString` on macOS.',
+      '--app-version <valor>',
+      '(macOS, solo windows) la versión de la aplicación. Se asigna a la propiedad de metadatos `ProductVersion` en Windows y a` CFBundleShortVersionString` en macOS.',
     )
     .option(
-      '--build-version <value>',
-      '(macOS, windows only) The build version of the app. Maps to `FileVersion` metadata property on Windows, and `CFBundleVersion` on macOS',
+      '--build-version <valor>',
+      '(macOS, solo windows) La versión de compilación de la aplicación. Se asigna a la propiedad de metadatos `FileVersion` en Windows y a` CFBundleVersion` en macOS',
     )
     .option(
-      '--app-copyright <value>',
-      '(macOS, windows only) a human-readable copyright line for the app. Maps to `LegalCopyright` metadata property on Windows, and `NSHumanReadableCopyright` on macOS',
+      '--app-copyright <valor>',
+      '(macOS, solo windows) una línea de derechos de autor legible por humanos para la aplicación. Se asigna a la propiedad de metadatos `LegalCopyright` en Windows y a` NSHumanReadableCopyright` en macOS',
     )
     .option(
       '--win32metadata <json-string>',
-      '(windows only) a JSON string of key/value pairs (ProductName, InternalName, FileDescription) to embed as executable metadata',
+      '(solo Windows) una cadena JSON de pares clave/valor (ProductName, InternalName, FileDescription) para incrustar como metadatos ejecutables',
       parseJson,
     )
     .option(
-      '-e, --electron-version <value>',
-      "electron version to package, without the 'v', see https://github.com/electron/electron/releases",
+      '-e, --electron-version <valor>',
+      "versión de electron a paquete, sin la 'v', consulte https://github.com/electron/electron/releases",
     )
     .option(
       '--no-overwrite',
-      'do not override output directory if it already exists; defaults to false',
+      'no anule el directorio de salida si ya existe; por defecto es false',
     )
     .option(
       '-c, --conceal',
-      'packages the app source code into an asar archive; defaults to false',
+      'empaqueta el código fuente de la aplicación en un archivo asar; por defecto es false',
     )
     .option(
       '--counter',
-      '(macOS only) set a dock count badge, determined by looking for a number in the window title; defaults to false',
+      '(solo macOS) establezca una insignia de recuento de muelle, determinada buscando un número en el título de la ventana; por defecto es false',
     )
     .option(
       '--bounce',
-      '(macOS only) make the dock icon bounce when the counter increases; defaults to false',
+      '(solo macOS) hace que el icono del muelle rebote cuando aumenta el contador; por defecto es false',
     )
     .option(
-      '-i, --icon <value>',
-      'the icon file to use as the icon for the app (should be a .png, on macOS can also be an .icns)',
+      '-i, --icon <valor>',
+      'el archivo de icono que se utilizará como icono de la aplicación (debe ser un .png, en macOS también puede ser un .icns)',
     )
     .option(
-      '--width <value>',
-      'set window default width; defaults to 1280px',
+      '--width <valor>',
+      'establecer el ancho predeterminado de la ventana; predeterminado a 1280px',
       parseInt,
     )
     .option(
-      '--height <value>',
-      'set window default height; defaults to 800px',
+      '--height <valor>',
+      'establecer la altura predeterminada de la ventana; predeterminado a 800px',
       parseInt,
     )
     .option(
-      '--min-width <value>',
-      'set window minimum width; defaults to 0px',
+      '--min-width <valor>',
+      'establecer el ancho mínimo de la ventana; predeterminado a 0px',
       parseInt,
     )
     .option(
-      '--min-height <value>',
-      'set window minimum height; defaults to 0px',
+      '--min-height <valor>',
+      'establecer la altura mínima de la ventana; predeterminado a 0px',
       parseInt,
     )
     .option(
-      '--max-width <value>',
-      'set window maximum width; default is unlimited',
+      '--max-width <valor>',
+      'establecer el ancho máximo de la ventana; por defecto es ilimitado',
       parseInt,
     )
     .option(
-      '--max-height <value>',
-      'set window maximum height; default is unlimited',
+      '--max-height <valor>',
+      'establecer la altura máxima de la ventana; por defecto es ilimitado',
       parseInt,
     )
-    .option('--x <value>', 'set window x location', parseInt)
-    .option('--y <value>', 'set window y location', parseInt)
-    .option('-m, --show-menu-bar', 'set menu bar visible; defaults to false')
+    .option('--x <valor>', 'establecer ventana en ubicación x', parseInt)
+    .option('--y <valor>', 'establecer ventana en ubicación y', parseInt)
+    .option(
+      '-m, --show-menu-bar',
+      'mostrar la barra de menu por defecto es false',
+    )
     .option(
       '-f, --fast-quit',
-      '(macOS only) quit app on window close; defaults to false',
+      '(macOS only) salir de la aplicación al cerrar la ventana; por defecto es false',
     )
-    .option('-u, --user-agent <value>', 'set the app user agent string')
+    .option(
+      '-u, --user-agent <valor>',
+      'establecer la cadena del agente de usuario de la aplicación',
+    )
     .option(
       '--honest',
-      'prevent the normal changing of the user agent string to appear as a regular Chrome browser',
+      'evitar que el cambio normal de la cadena del agente de usuario aparezca como un navegador Chrome normal',
     )
-    .option('--ignore-certificate', 'ignore certificate-related errors')
-    .option('--disable-gpu', 'disable hardware acceleration')
+    .option(
+      '--ignore-certificate',
+      'ignorar los errores relacionados con el certificado',
+    )
+    .option('--disable-gpu', 'deshabilitar la aceleración de hardware')
     .option(
       '--ignore-gpu-blacklist',
-      'force WebGL apps to work on unsupported GPUs',
+      'forzar que las aplicaciones WebGL funcionen en GPU no compatibles',
     )
-    .option('--enable-es3-apis', 'force activation of WebGL 2.0')
+    .option('--enable-es3-apis', 'forzar la activación de WebGL 2.0')
     .option(
       '--insecure',
-      'enable loading of insecure content; defaults to false',
+      'habilitar la carga de contenido inseguro; por defecto es false',
     )
-    .option('--flash', 'enables Adobe Flash; defaults to false')
+    .option('--flash', 'habilita Adobe Flash; por defecto es false')
     .option(
-      '--flash-path <value>',
-      'path to Chrome flash plugin; find it in `chrome://plugins`',
-    )
-    .option(
-      '--disk-cache-size <value>',
-      'forces the maximum disk space (in bytes) to be used by the disk cache',
+      '--flash-path <valor>',
+      'ruta al complemento flash de Chrome; encontrarlo en `chrome://plugins`',
     )
     .option(
-      '--inject <value>',
-      'path to a CSS/JS file to be injected. Pass multiple times to inject multiple files.',
+      '--disk-cache-size <valor>',
+      'fuerza el espacio máximo en disco (en bytes) que debe utilizar la memoria caché del disco',
+    )
+    .option(
+      '--inject <valor>',
+      'ruta a un archivo CSS / JS que se inyectará. Pase varias veces para inyectar varios archivos.',
       collect,
       [],
     )
-    .option('--full-screen', 'always start the app full screen')
-    .option('--maximize', 'always start the app maximized')
-    .option('--hide-window-frame', 'disable window frame and controls')
-    .option('--verbose', 'enable verbose/debug/troubleshooting logs')
-    .option('--disable-context-menu', 'disable the context menu (right click)')
     .option(
-      '--disable-dev-tools',
-      'disable developer tools (Ctrl+Shift+I / F12)',
+      '--full-screen',
+      'siempre inicie la aplicación en pantalla completa',
+    )
+    .option('--maximize', 'siempre inicie la aplicación maximizada')
+    .option(
+      '--hide-window-frame',
+      'deshabilitar el marco y los controles de la ventana',
     )
     .option(
-      '--zoom <value>',
-      'default zoom factor to use when the app is opened; defaults to 1.0',
+      '--verbose',
+      'habilitar registros detallados / de depuración / resolución de problemas',
+    )
+    .option(
+      '--disable-context-menu',
+      'deshabilitar el menú contextual (clic derecho)',
+    )
+    .option(
+      '--disable-dev-tools',
+      'deshabilitar las herramientas de desarrollo (Ctrl + Shift + I / F12)',
+    )
+    .option(
+      '--zoom <valor>',
+      'factor de zoom predeterminado para usar cuando se abre la aplicación; predeterminado en 1.0',
       parseFloat,
     )
     .option(
-      '--internal-urls <value>',
-      'regex of URLs to consider "internal"; all other URLs will be opened in an external browser. Default: URLs on same second-level domain as app',
+      '--internal-urls <valor>',
+      'regex de URL para considerar "interno"; todas las demás URL se abrirán en un navegador externo. Predeterminado: URL en el mismo dominio de segundo nivel que la aplicación',
     )
     .option(
       '--block-external-urls',
-      `forbid navigation to URLs not considered "internal" (see '--internal-urls').  Instead of opening in an external browser, attempts to navigate to external URLs will be blocked. Default: false`,
+      `prohibir la navegación a URL que no se consideren "internas" (consulte '--internal-urls'). En lugar de abrir en un navegador externo, se bloquearán los intentos de navegar a URL externas. Predeterminado: false`,
     )
     .option(
-      '--proxy-rules <value>',
-      'proxy rules; see https://www.electronjs.org/docs/api/session#sessetproxyconfig',
+      '--proxy-rules <valor>',
+      'reglas de proxy; mire https://www.electronjs.org/docs/api/session#sessetproxyconfig',
     )
     .option(
-      '--crash-reporter <value>',
-      'remote server URL to send crash reports',
+      '--crash-reporter <valor>',
+      'URL del servidor remoto para enviar informes de fallos',
     )
     .option(
       '--single-instance',
-      'allow only a single instance of the application',
+      'permitir solo una instancia única de la aplicación',
     )
     .option(
       '--clear-cache',
-      'prevent the application from preserving cache between launches',
+      'evitar que la aplicación conserve la caché entre lanzamientos',
     )
     .option(
       '--processEnvs <json-string>',
-      'a JSON string of key/value pairs to be set as environment variables before any browser windows are opened',
+      'una cadena JSON de pares clave / valor que se configurará como variables de entorno antes de que se abra cualquier ventana del navegador',
       getProcessEnvs,
     )
     .option(
       '--file-download-options <json-string>',
-      'a JSON string of key/value pairs to be set as file download options. See https://github.com/sindresorhus/electron-dl for available options.',
+      'una cadena JSON de pares clave / valor que se configurará como opciones de descarga de archivos. Ver https://github.com/sindresorhus/electron-dl para conocer las opciones disponibles.',
       parseJson,
     )
     .option(
       '--tray [start-in-tray]',
-      "Allow app to stay in system tray. If 'start-in-tray' is set as argument, don't show main window on first start",
+      "Permita que la aplicación permanezca en la bandeja del sistema. Si 'start-in-tray' está configurado como argumento, no muestra la ventana principal en el primer inicio",
       parseBooleanOrString,
     )
-    .option('--basic-auth-username <value>', 'basic http(s) auth username')
-    .option('--basic-auth-password <value>', 'basic http(s) auth password')
-    .option('--always-on-top', 'enable always on top window')
     .option(
-      '--title-bar-style <value>',
-      "(macOS only) set title bar style ('hidden', 'hiddenInset'). Consider injecting custom CSS (via --inject) for better integration",
+      '--basic-auth-username <valor>',
+      'nombre de usuario de autenticación http (s) básico',
     )
     .option(
-      '--global-shortcuts <value>',
-      'JSON file defining global shortcuts. See https://github.com/jiahaog/nativefier/blob/master/docs/api.md#global-shortcuts',
+      '--basic-auth-password <valor>',
+      'contraseña de autenticación http (s) básica',
+    )
+    .option('--always-on-top', 'habilitar siempre en la ventana superior')
+    .option(
+      '--title-bar-style <valor>',
+      "(macOS solamente) establece el estilo de la barra de título ('hidden', 'hiddenInset'). Considere la posibilidad de inyectar CSS personalizado (a través de --inject) para una mejor integración",
+    )
+    .option(
+      '--global-shortcuts <valor>',
+      'Archivo JSON que define accesos directos globales. Ver https://github.com/jiahaog/nativefier/blob/master/docs/api.md#global-shortcuts',
     )
     .option(
       '--browserwindow-options <json-string>',
-      'a JSON string that will be sent directly into electron BrowserWindow options. See https://github.com/jiahaog/nativefier/blob/master/docs/api.md#browserwindow-options',
+      'una cadena JSON que se enviará directamente a las opciones de electron BrowserWindow. Ver https://github.com/jiahaog/nativefier/blob/master/docs/api.md#browserwindow-options',
       parseJson,
     )
     .option(
-      '--background-color <value>',
-      "sets the app background color, for better integration while the app is loading. Example value: '#2e2c29'",
+      '--background-color <valor>',
+      "establece el color de fondo de la aplicación, para una mejor integración mientras se carga la aplicación. Valor de ejemplo: '#2e2c29'",
     )
     .option(
       '--darwin-dark-mode-support',
-      '(macOS only) enable Dark Mode support on macOS 10.14+',
+      '(solo macOS) habilita la compatibilidad con el modo oscuro en macOS 10.14+',
     );
 
   try {
     args.parse(sanitizedArgs);
   } catch (err) {
-    log.error('Failed to parse command-line arguments. Aborting.');
+    log.error(
+      'No se pudieron analizar los argumentos de la línea de comandos. Abortar.',
+    );
     process.exit(1);
   }
 
@@ -299,12 +328,15 @@ if (require.main === module) {
   buildNativefierApp(options)
     .then((appPath) => {
       if (!appPath) {
-        log.info(`App *not* built to ${appPath}`);
+        log.info(`Aplicación *no* construida para ${appPath}`);
         return;
       }
-      log.info(`App built to ${appPath}`);
+      log.info(`Aplicación construida para ${appPath}`);
     })
     .catch((error) => {
-      log.error('Error during build. Run with --verbose for details.', error);
+      log.error(
+        'Error durante la compilación. Ejecute con --verbose para obtener más detalles.',
+        error,
+      );
     });
 }

@@ -29,15 +29,15 @@ beforeAll(() => {
   );
 });
 
-describe('well formed name parameters', () => {
-  test('it should not call inferTitle', async () => {
+describe('parámetros de nombre bien formados', () => {
+  test('no debería llamar inferTitle', async () => {
     const result = await name(NAME_PARAMS_PROVIDED);
 
     expect(inferTitle).toHaveBeenCalledTimes(0);
     expect(result).toBe(NAME_PARAMS_PROVIDED.packager.name);
   });
 
-  test('it should call sanitize filename', async () => {
+  test('debería llamar a sanitize filename', async () => {
     const result = await name(NAME_PARAMS_PROVIDED);
 
     expect(sanitizeFilename).toHaveBeenCalledWith(
@@ -47,18 +47,20 @@ describe('well formed name parameters', () => {
   });
 });
 
-describe('bad name parameters', () => {
+describe('parámetros de mal nombre', () => {
   beforeEach(() => {
     (inferTitle as jest.Mock).mockResolvedValue(inferTitleMockedResult);
   });
 
-  const params = { packager: { targetUrl: 'some url', platform: 'whatever' } };
-  test('it should call inferTitle when the name is undefined', async () => {
+  const params = {
+    packager: { targetUrl: 'alguna url', platform: 'lo que sea' },
+  };
+  test('debería llamar inferTitle cuando el nombre no está definido', async () => {
     await name(params);
     expect(inferTitle).toHaveBeenCalledWith(params.packager.targetUrl);
   });
 
-  test('it should call inferTitle when the name is an empty string', async () => {
+  test('debería llamar inferTitle cuando el nombre es una cadena vacía', async () => {
     const testParams = {
       ...params,
       name: '',
@@ -68,7 +70,7 @@ describe('bad name parameters', () => {
     expect(inferTitle).toHaveBeenCalledWith(params.packager.targetUrl);
   });
 
-  test('it should call sanitize filename', async () => {
+  test('debería llamar a sanitize filename', async () => {
     const result = await name(params);
     expect(sanitizeFilename).toHaveBeenCalledWith(
       params.packager.platform,
@@ -77,8 +79,8 @@ describe('bad name parameters', () => {
   });
 });
 
-describe('handling inferTitle results', () => {
-  test('it should return the result from inferTitle', async () => {
+describe('manejo de resultados inferTitle', () => {
+  test('debería devolver el resultado de inferTitle', async () => {
     const result = await name(NAME_PARAMS_NEEDS_INFER);
 
     expect(result).toEqual(inferTitleMockedResult);
@@ -87,7 +89,7 @@ describe('handling inferTitle results', () => {
     );
   });
 
-  test('it should return the default app name when the returned pageTitle is falsey', async () => {
+  test('debería devolver el nombre de la aplicación predeterminada cuando el pageTitle devuelto es falso', async () => {
     (inferTitle as jest.Mock).mockResolvedValue(null);
     const result = await name(NAME_PARAMS_NEEDS_INFER);
 
@@ -97,8 +99,8 @@ describe('handling inferTitle results', () => {
     );
   });
 
-  test('it should return the default app name when inferTitle rejects', async () => {
-    (inferTitle as jest.Mock).mockRejectedValue('some error');
+  test('debería devolver el nombre de la aplicación predeterminada cuando inferTitle rechaza', async () => {
+    (inferTitle as jest.Mock).mockRejectedValue('algún error');
     const result = await name(NAME_PARAMS_NEEDS_INFER);
 
     expect(result).toEqual(DEFAULT_APP_NAME);

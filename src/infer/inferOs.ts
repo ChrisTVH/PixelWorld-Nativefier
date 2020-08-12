@@ -10,18 +10,18 @@ export function inferPlatform(): string {
     platform === 'win32' ||
     platform === 'linux'
   ) {
-    log.debug('Inferred platform', platform);
+    log.debug('Plataforma inferida', platform);
     return platform;
   }
 
-  throw new Error(`Untested platform ${platform} detected`);
+  throw new Error(`Plataforma no probada ${platform} detectada`);
 }
 
 export function inferArch(): string {
   const arch = os.arch();
   if (arch !== 'ia32' && arch !== 'x64' && arch !== 'arm') {
-    throw new Error(`Incompatible architecture ${arch} detected`);
+    throw new Error(`Arquitectura incompatible ${arch} detectada`);
   }
-  log.debug('Inferred arch', arch);
+  log.debug('Arquitectura inferida', arch);
   return arch;
 }

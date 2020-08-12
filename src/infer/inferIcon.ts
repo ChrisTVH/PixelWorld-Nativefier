@@ -25,7 +25,7 @@ function getMaxMatchScore(iconWithScores: any[]): number {
     }
     return maxScore;
   }, 0);
-  log.debug('Max icon match score:', score);
+  log.debug('Puntuación máxima de coincidencia de iconos:', score);
   return score;
 }
 
@@ -54,16 +54,16 @@ async function inferIconFromStore(
   targetUrl: string,
   platform: string,
 ): Promise<any> {
-  log.debug(`Inferring icon from store for ${targetUrl} on ${platform}`);
+  log.debug(`Inferir icono de la tienda para ${targetUrl} en ${platform}`);
   const allowedFormats = new Set(getAllowedIconFormats(platform));
 
   const cloudIcons: any[] = await gitCloud(GITCLOUD_URL);
-  log.debug(`Got ${cloudIcons.length} icons from gitcloud`);
+  log.debug(`Tiene ${cloudIcons.length} iconos de gitcloud`);
   const iconWithScores = mapIconWithMatchScore(cloudIcons, targetUrl);
   const maxScore = getMaxMatchScore(iconWithScores);
 
   if (maxScore === 0) {
-    log.debug('No relevant icon in store.');
+    log.debug('Ningún icono relevante en la tienda.');
     return null;
   }
 
@@ -75,7 +75,7 @@ async function inferIconFromStore(
   const iconUrl = matchingIcon && matchingIcon.url;
 
   if (!iconUrl) {
-    log.debug('Could not infer icon from store');
+    log.debug('No se pudo inferir el ícono de la tienda');
     return null;
   }
   return downloadFile(iconUrl);
@@ -85,7 +85,7 @@ export async function inferIcon(
   targetUrl: string,
   platform: string,
 ): Promise<string> {
-  log.debug(`Inferring icon for ${targetUrl} on ${platform}`);
+  log.debug(`Inferir icono para ${targetUrl} em ${platform}`);
   const tmpDirPath = getTempDir('iconinfer');
 
   let icon: { ext: string; data: Buffer } = await inferIconFromStore(
@@ -94,17 +94,17 @@ export async function inferIcon(
   );
   if (!icon) {
     const ext = platform === 'win32' ? '.ico' : '.png';
-    log.debug(`Trying to extract a ${ext} icon from the page.`);
+    log.debug(`Tratando de extraer un ${ext} icono de la página.`);
     icon = await pageIcon(targetUrl, { ext });
   }
   if (!icon) {
     return null;
   }
-  log.debug(`Got an icon from the page.`);
+  log.debug(`Obtuve un ícono de la página.`);
 
   const iconPath = path.join(tmpDirPath, `/icon${icon.ext}`);
   log.debug(
-    `Writing ${(icon.data.length / 1024).toFixed(1)} kb icon to ${iconPath}`,
+    `Escribiendo ${(icon.data.length / 1024).toFixed(1)} kb icon a ${iconPath}`,
   );
   await writeFileAsync(iconPath, icon.data);
   return iconPath;

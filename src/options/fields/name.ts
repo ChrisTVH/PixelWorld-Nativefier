@@ -14,12 +14,12 @@ type NameParams = {
 
 async function tryToInferName(targetUrl: string): Promise<string> {
   try {
-    log.debug('Inferring name for', targetUrl);
+    log.debug('Inferir nombre para', targetUrl);
     const pageTitle = await inferTitle(targetUrl);
     return pageTitle || DEFAULT_APP_NAME;
   } catch (err) {
     log.warn(
-      `Unable to automatically determine app name, falling back to '${DEFAULT_APP_NAME}'. Reason: ${(err as Error).toString()}`,
+      `No se puede determinar automáticamente el nombre de la aplicación, recurriendo a '${DEFAULT_APP_NAME}'. Razon: ${(err as Error).toString()}`,
     );
     return DEFAULT_APP_NAME;
   }
@@ -28,7 +28,7 @@ async function tryToInferName(targetUrl: string): Promise<string> {
 export async function name(options: NameParams): Promise<string> {
   if (options.packager.name) {
     log.debug(
-      `Got name ${options.packager.name} from options. No inferring needed`,
+      `Tengo nombre ${options.packager.name} de opciones. No es necesario inferir`,
     );
     return sanitizeFilename(options.packager.platform, options.packager.name);
   }

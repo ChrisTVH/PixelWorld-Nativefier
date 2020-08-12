@@ -9,10 +9,12 @@ async function getChromeVersionForElectronVersion(
   electronVersion: string,
   url = ELECTRON_VERSIONS_URL,
 ): Promise<string> {
-  log.debug('Grabbing electron<->chrome versions file from', url);
+  log.debug('Tomando el archivo de versiones de electron <-> chrome de', url);
   const response = await axios.get(url, { timeout: 5000 });
   if (response.status !== 200) {
-    throw new Error(`Bad request: Status code ${response.status}`);
+    throw new Error(
+      `Solicitud incorrecta: código de estado ${response.status}`,
+    );
   }
   const { data } = response;
   const electronVersionToChromeVersion: _.Dictionary<string> = _.zipObject(
@@ -21,13 +23,11 @@ async function getChromeVersionForElectronVersion(
   );
   if (!(electronVersion in electronVersionToChromeVersion)) {
     throw new Error(
-      `Electron version '${electronVersion}' not found in retrieved version list!`,
+      `Versión de Electron '${electronVersion}' no encontrado en la lista de versiones recuperadas!`,
     );
   }
   const chromeVersion = electronVersionToChromeVersion[electronVersion];
-  log.debug(
-    `Associated electron v${electronVersion} to chrome v${chromeVersion}`,
-  );
+  log.debug(`Electrón asociado v${electronVersion} a chrome v${chromeVersion}`);
   return chromeVersion;
 }
 
@@ -49,12 +49,12 @@ export function getUserAgentString(
       break;
     default:
       throw new Error(
-        'Error invalid platform specified to getUserAgentString()',
+        'Error de plataforma no válida especificada para getUserAgentString()',
       );
   }
   log.debug(
-    `Given chrome ${chromeVersion} on ${platform},`,
-    `using user agent: ${userAgent}`,
+    `Dado Chrome ${chromeVersion} en ${platform},`,
+    `usando el agente de usuario: ${userAgent}`,
   );
   return userAgent;
 }
@@ -65,7 +65,7 @@ export async function inferUserAgent(
   url = ELECTRON_VERSIONS_URL,
 ): Promise<string> {
   log.debug(
-    `Inferring user agent for electron ${electronVersion} / ${platform}`,
+    `Inferir agente de usuario para electron ${electronVersion} / ${platform}`,
   );
   try {
     const chromeVersion = await getChromeVersionForElectronVersion(
@@ -75,7 +75,7 @@ export async function inferUserAgent(
     return getUserAgentString(chromeVersion, platform);
   } catch (e) {
     log.warn(
-      `Unable to infer chrome version for user agent, using ${DEFAULT_CHROME_VERSION}`,
+      `No se puede inferir la versión de Chrome para el agente de usuario, usando ${DEFAULT_CHROME_VERSION}`,
     );
     return getUserAgentString(DEFAULT_CHROME_VERSION, platform);
   }

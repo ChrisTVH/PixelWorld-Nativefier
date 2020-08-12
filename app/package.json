@@ -1,7 +1,7 @@
 {
   "name": "pixelworldpanel-placeholder",
   "version": "1.0.0",
-  "description": "Placeholder for the pixelworld cli to override with a target url",
+  "description": "Marcador de posición para que el cli de pixelworld se anule con una URL de destino",
   "main": "lib/main.js",
   "author": "ChrisTVH",
   "license": "MIT",

@@ -1,25 +1,25 @@
 import { sanitizeFilename } from './sanitizeFilename';
 import { DEFAULT_APP_NAME } from '../constants';
 
-describe('replacing non ascii characters', () => {
+describe('reemplazando caracteres no ascii', () => {
   const nonAscii = '�';
-  test('it should return a result without non ascii characters', () => {
+  test('debería devolver un resultado sin caracteres no ascii', () => {
     const param = `${nonAscii}abc`;
     const expectedResult = 'abc';
     const result = sanitizeFilename('', param);
     expect(result).toBe(expectedResult);
   });
 
-  describe('when the result of replacing these characters is empty', () => {
+  describe('cuando el resultado de reemplazar estos caracteres está vacío', () => {
     const result = sanitizeFilename('', nonAscii);
     expect(result).toBe(DEFAULT_APP_NAME);
   });
 });
 
-describe('when the platform is linux', () => {
-  test('it should return a name without spaces', () => {
-    const param = 'some name';
-    const expectedResult = 'somename';
+describe('cuando la plataforma es linux', () => {
+  test('debe devolver un nombre sin espacios', () => {
+    const param = 'algún nombre';
+    const expectedResult = 'algúnnombre';
     const result = sanitizeFilename('linux', param);
     expect(result).toBe(expectedResult);
   });

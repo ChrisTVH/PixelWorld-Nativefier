@@ -72,15 +72,17 @@ function pickElectronAppArgs(options: AppOptions): any {
 
 async function maybeCopyScripts(srcs: string[], dest: string): Promise<void> {
   if (!srcs || srcs.length === 0) {
-    log.debug('No files to inject, skipping copy.');
+    log.debug('No hay archivos para inyectar, omitiendo la copia.');
     return;
   }
 
-  log.debug(`Copying ${srcs.length} files to inject in app.`);
+  log.debug(
+    `Proceso de copiar ${srcs.length} archivos para inyectar en la aplicación.`,
+  );
   for (const src of srcs) {
     if (!fs.existsSync(src)) {
       throw new Error(
-        `File ${src} not found. Note that Nativefier expects *local* files, not URLs.`,
+        `Archivo ${src} extraviado. Tenga en cuenta que Nativefier espera archivos *locales*, no URL.`,
       );
     }
 
@@ -94,7 +96,7 @@ async function maybeCopyScripts(srcs: string[], dest: string): Promise<void> {
     }
 
     const destPath = path.join(dest, 'inject', destFileName);
-    log.debug(`Copying injection file "${src}" to "${destPath}"`);
+    log.debug(`Copiando archivo de inyección "${src}" a "${destPath}"`);
     await copyFileOrDir(src, destPath);
   }
 }
@@ -117,7 +119,9 @@ function changeAppPackageJsonName(
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString());
   const normalizedAppName = normalizeAppName(name, url);
   packageJson.name = normalizedAppName;
-  log.debug(`Updating ${packageJsonPath} 'name' field to ${normalizedAppName}`);
+  log.debug(
+    `Actualizando ${packageJsonPath} 'nombre' campo a ${normalizedAppName}`,
+  );
 
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
 }
@@ -131,15 +135,15 @@ export async function prepareElectronApp(
   dest: string,
   options: AppOptions,
 ): Promise<void> {
-  log.debug(`Copying electron app from ${src} to ${dest}`);
+  log.debug(`Copiando la aplicación electron de ${src} a ${dest}`);
   try {
     await copyFileOrDir(src, dest);
   } catch (err) {
-    throw `Error copying electron app from ${src} to temp dir ${dest}. Error: ${(err as Error).toString()}`;
+    throw `Error al copiar la aplicación electron de ${src} al directorio temporal ${dest}. Error: ${(err as Error).toString()}`;
   }
 
   const appJsonPath = path.join(dest, '/nativefier.json');
-  log.debug(`Writing app config to ${appJsonPath}`);
+  log.debug(`Escribiendo la configuración de la aplicación en ${appJsonPath}`);
   await writeFileAsync(
     appJsonPath,
     JSON.stringify(pickElectronAppArgs(options)),
@@ -148,7 +152,7 @@ export async function prepareElectronApp(
   try {
     await maybeCopyScripts(options.nativefier.inject, dest);
   } catch (err) {
-    log.error('Error copying injection files.', err);
+    log.error('Error al copiar archivos de inyección.', err);
   }
   changeAppPackageJsonName(
     dest,

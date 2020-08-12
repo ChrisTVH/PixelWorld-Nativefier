@@ -102,14 +102,14 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
       require('debug').enable('electron-packager');
     } catch (err) {
       log.debug(
-        'Failed to enable electron-packager debug output. This should not happen,',
-        'and suggests their internals changed. Please report an issue.',
+        'No se pudo habilitar la salida de depuración del empaquetador de electron. Esto no debería suceder',
+        'y sugiere que cambiaron sus partes internas. Informe un problema.',
       );
     }
 
     log.debug(
-      'Running in verbose mode! This will produce a mountain of logs and',
-      'is recommended only for troubleshooting or if you like Shakespeare.',
+      '¡Ejecutando en modo detallado! Esto producirá una montaña de troncos y',
+      'se recomienda solo para solucionar problemas o si te gusta Shakespeare.',
     );
   } else {
     log.setLevel('info');
@@ -118,14 +118,14 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
   if (rawOptions.electronVersion) {
     const requestedVersion: string = rawOptions.electronVersion;
     if (!SEMVER_VERSION_NUMBER_REGEX.exec(requestedVersion)) {
-      throw `Invalid Electron version number "${requestedVersion}". Aborting.`;
+      throw `Número de versión de Electron no válido "${requestedVersion}". Abortando.`;
     }
     const requestedMajorVersion = parseInt(requestedVersion.split('.')[0], 10);
     if (requestedMajorVersion < ELECTRON_MAJOR_VERSION) {
       log.warn(
-        `\nATTENTION: Using **old** Electron version ${requestedVersion} as requested.`,
-        "\nIt's untested, bugs and horror will happen, you're on your own.",
-        `\nSimply abort & re-run without passing the version flag to default to ${DEFAULT_ELECTRON_VERSION}`,
+        `\nATENCIÓN: Usando la versión **antigua** de Electron ${requestedVersion} de acuerdo a lo pedido.`,
+        '\nNo ha sido probado, los errores y el horror sucederán, estás solo.',
+        `\nSimplemente aborte y vuelva a ejecutar sin pasar el indicador de versión al predeterminado ${DEFAULT_ELECTRON_VERSION}`,
       );
     }
   }
@@ -156,7 +156,10 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
   }
 
   if (rawOptions.globalShortcuts) {
-    log.debug('Use global shortcuts file at', rawOptions.globalShortcuts);
+    log.debug(
+      'Usar archivo de accesos directos globales en',
+      rawOptions.globalShortcuts,
+    );
     const globalShortcuts = JSON.parse(
       fs.readFileSync(rawOptions.globalShortcuts).toString(),
     );

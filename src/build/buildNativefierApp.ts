@@ -34,7 +34,7 @@ function getAppPath(appPath: string | string[]): string {
 
   if (appPath.length > 1) {
     log.warn(
-      'Warning: This should not be happening, packaged app path contains more than one element:',
+      'Advertencia: esto no debería estar sucediendo, la ruta de la aplicación empaquetada contiene más de un elemento:',
       appPath,
     );
   }
@@ -50,9 +50,9 @@ async function copyIconsIfNecessary(
   options: AppOptions,
   appPath: string,
 ): Promise<void> {
-  log.debug('Copying icons if necessary');
+  log.debug('Copiar iconos si es necesario');
   if (!options.packager.icon) {
-    log.debug('No icon specified in options; aborting');
+    log.debug('Ningún icono especificado en las opciones; abortar');
     return;
   }
 
@@ -60,7 +60,7 @@ async function copyIconsIfNecessary(
     options.packager.platform === 'darwin' ||
     options.packager.platform === 'mas'
   ) {
-    log.debug('No copying necessary on macOS; aborting');
+    log.debug('No es necesario copiar en macOS; abortar');
     return;
   }
 
@@ -69,7 +69,7 @@ async function copyIconsIfNecessary(
   const destFileName = `icon${path.extname(options.packager.icon)}`;
   const destIconPath = path.join(destAppPath, destFileName);
 
-  log.debug(`Copying icon ${options.packager.icon} to`, destIconPath);
+  log.debug(`Copiar icono ${options.packager.icon} a`, destIconPath);
   await copyFileOrDir(options.packager.icon, destIconPath);
 }
 
@@ -89,10 +89,12 @@ function trimUnprocessableOptions(options: AppOptions): void {
       return;
     }
     log.warn(
-      `*Not* setting [${optionsPresent.join(', ')}], as couldn't find Wine.`,
-      'Wine is required when packaging a Windows app under on non-Windows platforms.',
-      'Also, note that Windows apps built under non-Windows platforms without Wine *will lack* certain',
-      'features, like a correct icon and process name. Do yourself a favor and install Wine, please.',
+      `* No* ajuste [${optionsPresent.join(
+        ', ',
+      )}], como no pude encontrar Wine.`,
+      'Se requiere Wine al empaquetar una aplicación de Windows en plataformas que no son de Windows.',
+      'Además, tenga en cuenta que las aplicaciones de Windows creadas en plataformas distintas de Windows sin Wine * carecerán * de ciertos',
+      'características, como un icono y un nombre de proceso correctos. Hágase un favor e instale Wine, por favor.',
     );
     for (const keyToUnset of optionsPresent) {
       options[keyToUnset] = null;
@@ -104,25 +106,25 @@ function trimUnprocessableOptions(options: AppOptions): void {
 export async function buildNativefierApp(
   rawOptions: NativefierOptions,
 ): Promise<string> {
-  log.info('Processing options...');
+  log.info('Procesando Opciones...');
   const options = await getOptions(rawOptions);
 
-  log.info('\nPreparing Electron app...');
+  log.info('\nPreparando la aplicación Electron...');
   const tmpPath = getTempDir('app', 0o755);
   await prepareElectronApp(options.packager.dir, tmpPath, options);
 
-  log.info('\nConverting icons...');
+  log.info('\nConversión de iconos...');
   options.packager.dir = tmpPath; // const optionsWithTmpPath = { ...options, dir: tmpPath };
   await convertIconIfNecessary(options);
 
   log.info(
-    "\nPackaging... This will take a few seconds, maybe minutes if the requested Electron isn't cached yet...",
+    '\nEmpaquetado ... Esto tomará unos segundos, tal vez minutos si el Electron solicitado aún no está en caché ...',
   );
   trimUnprocessableOptions(options);
   electronGet.initializeProxy(); // https://github.com/electron/get#proxies
   const appPathArray = await electronPackager(options.packager);
 
-  log.info('\nFinalizing build...');
+  log.info('\nFinalizando compilación...');
   const appPath = getAppPath(appPathArray);
   await copyIconsIfNecessary(options, appPath);
 

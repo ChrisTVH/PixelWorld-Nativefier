@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 
 import { inferTitle } from './inferTitle';
 
-test('it returns the correct title', async () => {
+test('devuelve el título correcto', async () => {
   const axiosGetMock = jest.spyOn(axios, 'get');
   const mockedResponse: AxiosResponse<string> = {
     data: `
@@ -17,7 +17,7 @@ test('it returns the correct title', async () => {
     config: {},
   };
   axiosGetMock.mockResolvedValue(mockedResponse);
-  const result = await inferTitle('someurl');
+  const result = await inferTitle('alguna url');
 
   expect(axiosGetMock).toHaveBeenCalledTimes(1);
   expect(result).toBe('TEST_TITLE');

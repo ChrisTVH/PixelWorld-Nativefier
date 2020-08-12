@@ -10,7 +10,7 @@ beforeAll(() => {
   );
 });
 
-test('it should call the async config', async () => {
+test('debería llamar a la configuración asíncrona', async () => {
   const params = {
     targetUrl: 'https://example.com/',
   };

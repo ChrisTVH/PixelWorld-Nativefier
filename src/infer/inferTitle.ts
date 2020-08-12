@@ -12,10 +12,10 @@ export async function inferTitle(url: string): Promise<string> {
       'User-Agent': USER_AGENT,
     },
   });
-  log.debug(`Fetched ${(data.length / 1024).toFixed(1)} kb page at`, url);
+  log.debug(`Obtenido ${(data.length / 1024).toFixed(1)} kb página en`, url);
   const $ = cheerio.load(data);
   const inferredTitle = $('title').first().text();
 
-  log.debug('Inferred title:', inferredTitle);
+  log.debug('Título inferido:', inferredTitle);
   return inferredTitle;
 }

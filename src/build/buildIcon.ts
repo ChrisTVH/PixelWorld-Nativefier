@@ -30,14 +30,16 @@ export async function convertIconIfNecessary(
   options: AppOptions,
 ): Promise<void> {
   if (!options.packager.icon) {
-    log.debug('Option "icon" not set, skipping icon conversion.');
+    log.debug(
+      'La opción "icono" no está configurada, omitiendo la conversión de iconos.',
+    );
     return;
   }
 
   if (options.packager.platform === 'win32') {
     if (iconIsIco(options.packager.icon)) {
       log.debug(
-        'Building for Windows and icon is already a .ico, no conversion needed',
+        'La construcción para Windows y el ícono ya son .ico, no se necesita conversión',
       );
       return;
     }
@@ -47,7 +49,7 @@ export async function convertIconIfNecessary(
       options.packager.icon = iconPath;
       return;
     } catch (error) {
-      log.warn('Failed to convert icon to .ico, skipping.', error);
+      log.warn('No se pudo convertir el ícono a .ico, omitiendo.', error);
       return;
     }
   }
@@ -55,7 +57,7 @@ export async function convertIconIfNecessary(
   if (options.packager.platform === 'linux') {
     if (iconIsPng(options.packager.icon)) {
       log.debug(
-        'Building for Linux and icon is already a .png, no conversion needed',
+        'La construcción para Linux y el icono ya es un .png, no se necesita conversión',
       );
       return;
     }
@@ -65,21 +67,21 @@ export async function convertIconIfNecessary(
       options.packager.icon = iconPath;
       return;
     } catch (error) {
-      log.warn('Failed to convert icon to .png, skipping.', error);
+      log.warn('No se pudo convertir el ícono a .png, omitiendo.', error);
       return;
     }
   }
 
   if (iconIsIcns(options.packager.icon)) {
     log.debug(
-      'Building for macOS and icon is already a .icns, no conversion needed',
+      'La construcción para macOS y el icono ya es un .icns, no se necesita conversión',
     );
     return;
   }
 
   if (!isOSX()) {
     log.warn(
-      'Skipping icon conversion to .icns, conversion is only supported on macOS',
+      'Omitiendo la conversión de íconos a .icns, la conversión solo es compatible con macOS',
     );
     return;
   }
@@ -89,7 +91,7 @@ export async function convertIconIfNecessary(
     options.packager.icon = iconPath;
     return;
   } catch (error) {
-    log.warn('Failed to convert icon to .icns, skipping.', error);
+    log.warn('No se pudo convertir el ícono a .icns, omitiendo.', error);
     options.packager.icon = undefined;
     return;
   }

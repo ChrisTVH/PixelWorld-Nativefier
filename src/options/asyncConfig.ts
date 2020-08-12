@@ -7,6 +7,6 @@ import { AppOptions } from './model';
  * Takes the options object and infers new values needing async work
  */
 export async function asyncConfig(options: AppOptions): Promise<any> {
-  log.debug('\nPerforming async options post-processing.');
+  log.debug('\nRealización de posprocesamiento de opciones asíncronas.');
   await processOptions(options);
 }

@@ -51,7 +51,7 @@ export async function copyFileOrDir(
 }
 
 export async function downloadFile(fileUrl: string): Promise<DownloadResult> {
-  log.debug(`Downloading ${fileUrl}`);
+  log.debug(`Descargando ${fileUrl}`);
   return axios
     .get(fileUrl, {
       responseType: 'arraybuffer',
@@ -96,10 +96,10 @@ export function getAllowedIconFormats(platform: string): string[] {
         formats.push('.ico');
         break;
       default:
-        throw new Error(`Unknown platform ${platform}`);
+        throw new Error(`Plataforma desconocida ${platform}`);
     }
     log.debug(
-      `Allowed icon formats when building for ${platform} (limited on Windows):`,
+      `Formatos de icono permitidos al crear para ${platform} (limitado en Windows):`,
       formats,
     );
     return formats;
@@ -134,8 +134,8 @@ export function getAllowedIconFormats(platform: string): string[] {
       }
       break;
     default:
-      throw new Error(`Unknown platform ${platform}`);
+      throw new Error(`Plataforma desconocida ${platform}`);
   }
-  log.debug(`Allowed icon formats when building for ${platform}:`, formats);
+  log.debug(`Formatos de icono permitidos al crear para ${platform}:`, formats);
   return formats;
 }

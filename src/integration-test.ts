@@ -18,7 +18,7 @@ function checkApp(appRoot: string, inputOptions: any): void {
       relativeAppFolder = 'resources/app';
       break;
     default:
-      throw new Error('Unknown app platform');
+      throw new Error('Plataforma de aplicación desconocida');
   }
 
   const appPath = path.join(appRoot, relativeAppFolder);
@@ -41,7 +41,7 @@ function checkApp(appRoot: string, inputOptions: any): void {
 describe('Nativefier', () => {
   jest.setTimeout(300000);
 
-  test('builds a Nativefier app for several platforms', async () => {
+  test('crea una aplicación Nativefier para varias plataformas', async () => {
     for (const platform of ['darwin', 'linux']) {
       const tempDirectory = getTempDir('integtest');
       const options = {
