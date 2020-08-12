@@ -89,7 +89,7 @@ if (require.main === module) {
   const args = commander
     .name('nativefier')
     .version(packageJson.version, '-v, --version')
-    .arguments('<targetUrl> [dest]')
+    .arguments('<URL de destino> [dest]')
     .action((url, outputDirectory) => {
       positionalOptions.targetUrl = url;
       positionalOptions.out = outputDirectory;

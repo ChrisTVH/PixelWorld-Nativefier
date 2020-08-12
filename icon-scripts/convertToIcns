@@ -18,8 +18,8 @@ type convert &>/dev/null && HAVE_IMAGEMAGICK=true
 type iconutil &>/dev/null && HAVE_ICONUTIL=true
 type sips &>/dev/null && HAVE_SIPS=true
 
-[[ -z "$HAVE_ICONUTIL" ]] && { echo >&2 "Cannot find required iconutil executable"; exit 1; }
-[[ -z "$HAVE_IMAGEMAGICK" && -z "$HAVE_SIPS" ]] && { echo >&2 "Cannot find required image converter, please install sips or imagemagick"; exit 1; }
+[[ -z "$HAVE_ICONUTIL" ]] && { echo >&2 "No se puede encontrar el ejecutable iconutil requerido"; exit 1; }
+[[ -z "$HAVE_IMAGEMAGICK" && -z "$HAVE_SIPS" ]] && { echo >&2 "No se puede encontrar el convertidor de imágenes requerido, instale sips o imagemagick"; exit 1; }
 
 # Parameters
 SOURCE="$1"
@@ -27,12 +27,12 @@ DEST="$2"
 
 # Check source and destination arguments
 if [ -z "${SOURCE}" ]; then
-	echo "No source image specified"
+	echo "No se ha especificado ninguna imagen de origen"
 	exit 1
 fi
 
 if [ -z "${DEST}" ]; then
-	echo "No destination specified"
+	echo "Sin destino especificado"
 	exit 1
 fi
 

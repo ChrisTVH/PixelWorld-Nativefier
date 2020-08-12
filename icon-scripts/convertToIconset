@@ -41,11 +41,11 @@ DEST="$2"
 
 # Check source and destination arguments
 if [ -z "${SOURCE}" ]; then
-	echo >&2 "No source image specified"; exit 1
+	echo >&2 "No se ha especificado ninguna imagen de origen"; exit 1
 fi
 
 if [ -z "${DEST}" ]; then
-	echo >&2 "No destination specified"; exit 1
+	echo >&2 "Sin destino especificado"; exit 1
 fi
 
 HAVE_IMAGEMAGICK=
@@ -61,5 +61,5 @@ if [[ ! -z "$HAVE_IMAGEMAGICK" ]]; then
 elif [[ ! -z "$HAVE_SIPS" ]]; then
   make_iconset_sips "${SOURCE}" "${DEST}"
 else
-  echo >&2 "Cannot find convert or sips executables"; exit 1;
+  echo >&2 "No se pueden encontrar ejecutables de conversión o sips"; exit 1;
 fi

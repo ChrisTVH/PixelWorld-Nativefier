@@ -16,7 +16,9 @@ export function createMenu({
   const zoomResetLabel =
     zoomBuildTimeValue === 1.0
       ? 'Restablecer Zoom'
-      : `Restablecer zoom (a ${zoomBuildTimeValue * 100}%, establecido en el momento de la construcción)`;
+      : `Restablecer zoom (a ${
+          zoomBuildTimeValue * 100
+        }%, establecido en el momento de la construcción)`;
 
   const editMenu: MenuItemConstructorOptions = {
     label: '&Editar',

@@ -8,18 +8,18 @@
 
 set -e
 
-type convert >/dev/null 2>&1 || { echo >&2 "Cannot find required ImageMagick Convert executable"; exit 1; }
+type convert >/dev/null 2>&1 || { echo >&2 "No se puede encontrar el ejecutable ImageMagick Convert requerido"; exit 1; }
 
 SOURCE=$1
 DEST=$2
 
 if [ -z "${SOURCE}" ]; then
-	echo "No source image specified"
+	echo "No se ha especificado ninguna imagen de origen"
 	exit 1
 fi
 
 if [ -z "${DEST}" ]; then
-	echo "No destination specified"
+	echo "Sin destino especificado"
 	exit 1
 fi
 

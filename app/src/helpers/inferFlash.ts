@@ -82,6 +82,8 @@ export function inferFlashPath() {
     return findFlashOnLinux();
   }
 
-  console.warn('Unable to determine OS to infer flash player');
+  console.warn(
+    'No se puede determinar el sistema operativo para inferir Flash Player',
+  );
   return null;
 }

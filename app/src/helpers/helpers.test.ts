@@ -5,25 +5,25 @@ const internalUrlSubPath = 'topic/technology';
 const externalUrl = 'https://www.wikipedia.org/wiki/Electron';
 const wildcardRegex = /.*/;
 
-test('the original url should be internal', () => {
+test('la URL original debe ser interna', () => {
   expect(linkIsInternal(internalUrl, internalUrl, undefined)).toEqual(true);
 });
 
-test('sub-paths of the original url should be internal', () => {
+test('las subrutas de la URL original deben ser internas', () => {
   expect(
     linkIsInternal(internalUrl, internalUrl + internalUrlSubPath, undefined),
   ).toEqual(true);
 });
 
-test("'about:blank' should be internal", () => {
+test("'about: blank 'debe ser interno", () => {
   expect(linkIsInternal(internalUrl, 'about:blank', undefined)).toEqual(true);
 });
 
-test('urls from different sites should not be internal', () => {
+test('las URL de diferentes sitios no deben ser internas', () => {
   expect(linkIsInternal(internalUrl, externalUrl, undefined)).toEqual(false);
 });
 
-test('all urls should be internal with wildcard regex', () => {
+test('todas las URL deben ser internas con expresiones regulares comodín', () => {
   expect(linkIsInternal(internalUrl, externalUrl, wildcardRegex)).toEqual(true);
 });
 
@@ -31,14 +31,14 @@ const smallCounterTitle = 'Inbox (11) - nobody@example.com - Gmail';
 const largeCounterTitle = 'Inbox (8,756) - nobody@example.com - Gmail';
 const noCounterTitle = 'Inbox - nobody@example.com - Gmail';
 
-test('getCounterValue should return undefined for titles without counter numbers', () => {
+test('getCounterValue debería devolver undefined para títulos sin números de contador', () => {
   expect(getCounterValue(noCounterTitle)).toEqual(undefined);
 });
 
-test('getCounterValue should return a string for small counter numbers in the title', () => {
+test('getCounterValue debería devolver una cadena para pequeños números de contador en el título', () => {
   expect(getCounterValue(smallCounterTitle)).toEqual('11');
 });
 
-test('getCounterValue should return a string for large counter numbers in the title', () => {
+test('getCounterValue debería devolver una cadena para números de contador grandes en el título', () => {
   expect(getCounterValue(largeCounterTitle)).toEqual('8,756');
 });
