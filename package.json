@@ -1,7 +1,7 @@
 {
   "name": "pixelworld-nativefier",
   "version": "9.2.0",
-  "description": "Wrap web apps natively",
+  "description": "Envuelva aplicaciones web de forma nativa",
   "license": "MIT",
   "author": "ChrisTVH",
   "engines": {
@@ -59,7 +59,7 @@
     "@types/page-icon": "0.x",
     "@types/shelljs": "0.x",
     "@types/tmp": "0.x",
-    "axios": "0.x",
+    "axios": " 0.18.1",
     "cheerio": "^1.0.0-rc.3",
     "commander": "4.x",
     "electron-packager": "15.x",
