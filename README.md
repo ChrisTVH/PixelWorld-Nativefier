@@ -10,7 +10,7 @@
 - Node.js >= 10 y npm >= 6
 - Opcionales: ImageMagick y Wine
 
-# Instalacón
+# Instalación
 
 ```bash
 npm install -g pixelworld-nativefier
