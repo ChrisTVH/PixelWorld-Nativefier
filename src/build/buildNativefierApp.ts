@@ -60,7 +60,7 @@ async function copyIconsIfNecessary(
     options.packager.platform === 'darwin' ||
     options.packager.platform === 'mas'
   ) {
-    log.debug('No es necesario copiar en macOS; abortar');
+    log.debug('No es necesario copiar en MacOS; abortar');
     return;
   }
 
@@ -118,7 +118,7 @@ export async function buildNativefierApp(
   await convertIconIfNecessary(options);
 
   log.info(
-    '\nEmpaquetado ... Esto tomará unos segundos, tal vez minutos si el Electron solicitado aún no está en caché ...',
+    '\nEmpaquetado... Esto tomará unos segundos, tal vez minutos si el Electron solicitado aún no está en caché...',
   );
   trimUnprocessableOptions(options);
   electronGet.initializeProxy(); // https://github.com/electron/get#proxies
