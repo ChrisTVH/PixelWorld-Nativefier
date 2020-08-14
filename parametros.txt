@@ -2,4 +2,4 @@
 #       Comando para construir Aplicación web         #
 #######################################################
 
-nativefier --icon /master/recursos/pixelworld.ico -n PixelWorld-Panel -p windows --maximize --disable-context-menu --disable-dev-tools --build-version 1.2 --app-version 1.4 https://panel.pixelworld.ml/
+nativefier --icon /master/recursos/whatsapp.png -n WhatsApp -p linux --maximize --disable-context-menu --disable-dev-tools --build-version 1.3 --app-version 1.5 --background-color #272727 --tray https://web.whatsapp.com/

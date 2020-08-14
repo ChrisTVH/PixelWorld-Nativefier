@@ -2,9 +2,6 @@
   "name": "pixelworld-nativefier",
   "version": "9.2.0",
   "description": "Envuelva aplicaciones web de forma nativa",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "license": "MIT",
   "author": "ChrisTVH",
   "engines": {
