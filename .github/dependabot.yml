@@ -9,5 +9,5 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-      commit-message:
+    commit-message:
       prefix: "Actualizando Paquetes"
