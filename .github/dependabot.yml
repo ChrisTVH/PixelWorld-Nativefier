@@ -11,3 +11,9 @@ updates:
       interval: "daily"
     commit-message:
       prefix: "actualizado"
+  - package-ecosystem: "npm"
+    directory: "/app"
+    schedule:
+      interval: "daily"
+    commit-message:
+      prefix: "actualizado"
