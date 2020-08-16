@@ -61,7 +61,7 @@
     "@types/tmp": "0.x",
     "axios": " 0.19.2",
     "cheerio": "^1.0.0-rc.3",
-    "commander": "4.x",
+    "commander": "6.x",
     "electron-packager": "15.x",
     "gitcloud": "0.x",
     "hasbin": "1.x",
