@@ -59,7 +59,7 @@
     "@types/page-icon": "0.x",
     "@types/shelljs": "0.x",
     "@types/tmp": "0.x",
-    "axios": " 0.19.2",
+    "axios": " 0.20.0",
     "cheerio": "^1.0.0-rc.3",
     "commander": "6.x",
     "electron-packager": "15.x",
