@@ -49,7 +49,7 @@ npm run build
 Configure un enlace simbólico para que la ejecución de `nativefier` llame a su versión de desarrollo con sus cambios:
 
 ```bash
-sudo npm link
+npm link
 which nativefier
 # -> Debería devolver un camino, e.g. /home/youruser/.node_modules/lib/node_modules/nativefier
 # Si no, asegúrese de `npm_config_prefix` Env var está configurado y en tu `RUTA`
