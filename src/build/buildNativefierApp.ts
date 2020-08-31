@@ -128,5 +128,19 @@ export async function buildNativefierApp(
   const appPath = getAppPath(appPathArray);
   await copyIconsIfNecessary(options, appPath);
 
+  if (appPath) {
+    let osRunHelp = '';
+    if (options.packager.platform === 'win32') {
+      osRunHelp = `el contenido del archivo que diga .exe.`;
+    } else if (options.packager.platform === 'linux') {
+      osRunHelp = `el archivo ejecutable contenido (con el prefijo ./ si es necesario)\nMenu/los accesos directos del escritorio dependen de usted, porque PixelWorld-Nativefier no puede saber dónde va a mover la aplicación. Busque "archivo linux.desktop" para obtener ayuda o consulte https://wiki.archlinux.org/index.php/Desktop_entries`;
+    } else if (options.packager.platform === 'darwin') {
+      osRunHelp = `el paquete de aplicaciones.`;
+    }
+    log.info(
+      `Aplicación construida para ${appPath} , muévelo a donde tenga sentido para ti y corre ${osRunHelp}`,
+    );
+  }
+
   return appPath;
 }

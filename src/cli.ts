@@ -96,7 +96,7 @@ if (require.main === module) {
     })
     .option('-n, --name <valor>', 'nombre de la app')
     .option('-p, --platform <valor>', "'mac', 'mas', 'linux' o 'windows'")
-    .option('-a, --arch <valor>', "'ia32' o 'x64' o 'armv7l'")
+    .option('-a, --arch <valor>', "'ia32' o 'x64' o 'arm' o 'arm64'")
     .option(
       '--app-version <valor>',
       '(macOS, solo windows) la versión de la aplicación. Se asigna a la propiedad de metadatos `ProductVersion` en Windows y a` CFBundleShortVersionString` en macOS.',
@@ -325,18 +325,7 @@ if (require.main === module) {
   }
   checkInternet();
   const options = { ...positionalOptions, ...commander.opts() };
-  buildNativefierApp(options)
-    .then((appPath) => {
-      if (!appPath) {
-        log.info(`Aplicación *no* construida para ${appPath}`);
-        return;
-      }
-      log.info(`Aplicación construida para ${appPath}`);
-    })
-    .catch((error) => {
-      log.error(
-        'Error durante la compilación. Ejecute con --verbose para obtener más detalles.',
-        error,
-      );
-    });
+  buildNativefierApp(options).catch((error) => {
+    log.error('Error durante la compilación. Corre con --verbose para detalles.', error);
+  });
 }

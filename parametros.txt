@@ -1,5 +1,10 @@
 #######################################################
 #       Comando para construir Aplicación web         #
 #######################################################
+Linux
 
 nativefier --icon /master/recursos/whatsapp.png -n WhatsApp -p linux --maximize --disable-context-menu --disable-dev-tools --build-version 1.3 --app-version 1.5 --background-color #272727 --tray https://web.whatsapp.com/
+
+Windows
+
+nativefier --icon C:\Users\Tu-Usuario\Desktop\whatsapp.ico -n WhatsApp -p windows --maximize --disable-context-menu --disable-dev-tools --build-version 1.3 --app-version 1.5 --background-color 272727 --tray https://web.whatsapp.com/

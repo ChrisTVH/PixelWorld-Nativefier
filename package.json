@@ -1,6 +1,6 @@
 {
   "name": "pixelworld-nativefier",
-  "version": "9.2.0",
+  "version": "10.1.0",
   "description": "Envuelva aplicaciones web de forma nativa",
   "license": "MIT",
   "author": "ChrisTVH",
@@ -85,7 +85,7 @@
     "prettier": "2.x",
     "rimraf": "3.x",
     "ts-loader": "8.x",
-    "typescript": "3.x",
+    "typescript": "4.x",
     "webpack": "4.x",
     "webpack-cli": "3.x"
   },

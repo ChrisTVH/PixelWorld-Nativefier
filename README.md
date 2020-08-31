@@ -40,7 +40,7 @@ npm run dev-up
 npm run dev-up-win
 ```
 
-Construir nativefier:
+Construir pixelworld-nativefier:
 
 ```bash
 npm run build
@@ -50,6 +50,7 @@ Configure un enlace simbólico para que la ejecución de `nativefier` llame a su
 
 ```bash
 npm link
+# si tienes GNU/Linux ejecuta esto también
 which nativefier
 # -> Debería devolver un camino, e.g. /home/youruser/.node_modules/lib/node_modules/nativefier
 # Si no, asegúrese de `npm_config_prefix` Env var está configurado y en tu `RUTA`
