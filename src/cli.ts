@@ -326,6 +326,6 @@ if (require.main === module) {
   checkInternet();
   const options = { ...positionalOptions, ...commander.opts() };
   buildNativefierApp(options).catch((error) => {
-    log.error('Error durante la compilación. Corre con --verbose para detalles.', error);
+    log.error('Error durante la compilación. Ejecute con --verbose para obtener más detalles.', error);
   });
 }
