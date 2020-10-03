@@ -1,5 +1,5 @@
 {
-  "name": "pixelworldpanel-placeholder",
+  "name": "pixelworld-nativefier-placeholder",
   "version": "1.0.0",
   "description": "Marcador de posición para que el cli de pixelworld se anule con una URL de destino",
   "main": "lib/main.js",
