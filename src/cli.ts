@@ -327,7 +327,8 @@ if (require.main === module) {
   const options = { ...positionalOptions, ...commander.opts() };
   buildNativefierApp(options).catch((error) => {
     log.error(
-      'Error durante la compilación. Ejecute con',
-      '--verbose para obtener más detalles.', error);
+      'Error durante la compilación. Ejecute con --verbose para obtener más detalles.',
+      error,
+    );
   });
 }
