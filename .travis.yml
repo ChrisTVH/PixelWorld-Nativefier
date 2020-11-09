@@ -4,10 +4,12 @@ os:
 - osx
 - windows
 node_js:
+- '15'
 - '14' # Changing this? Remind to keep linter+deploy conditions below aligned
 - '12'
 - '10'
 install:
+- rm -rf lib/ app/lib/ app/dist/ node_modules/ app/node_modules/
 - npm run dev-up
 - npm run build
 script:

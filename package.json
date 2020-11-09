@@ -1,6 +1,6 @@
 {
   "name": "pixelworld-nativefier",
-  "version": "10.1.0",
+  "version": "10.1.5",
   "description": "Envuelva aplicaciones web de forma nativa",
   "license": "MIT",
   "author": "ChrisTVH",
@@ -76,8 +76,8 @@
   },
   "devDependencies": {
     "@types/jest": "26.x",
-    "@typescript-eslint/eslint-plugin": "3.x",
-    "@typescript-eslint/parser": "3.x",
+    "@typescript-eslint/eslint-plugin": "^4.6.1",
+    "@typescript-eslint/parser": "^4.6.1",
     "eslint": "7.x",
     "eslint-config-prettier": "6.x",
     "eslint-plugin-prettier": "3.x",
@@ -86,8 +86,8 @@
     "rimraf": "3.x",
     "ts-loader": "8.x",
     "typescript": "4.x",
-    "webpack": "4.x",
-    "webpack-cli": "3.x"
+    "webpack": "5.x",
+    "webpack-cli": "4.x"
   },
   "jest": {
     "collectCoverage": true,
