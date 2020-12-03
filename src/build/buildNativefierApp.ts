@@ -65,7 +65,7 @@ async function copyIconsIfNecessary(
   }
 
   // Windows y Linux: coloque el archivo de icono en la aplicación
-  
+
   const destFileName = `icon${path.extname(options.packager.icon)}`;
   const destIconPath = path.join(appPath, destFileName);
 

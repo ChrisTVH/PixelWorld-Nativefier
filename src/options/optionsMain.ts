@@ -61,7 +61,7 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
       disableGpu: rawOptions.disableGpu || false,
       diskCacheSize: rawOptions.diskCacheSize || null,
       disableOldBuildWarning:
-      rawOptions.disableOldBuildWarningYesiknowitisinsecure || false,
+        rawOptions.disableOldBuildWarningYesiknowitisinsecure || false,
       enableEs3Apis: rawOptions.enableEs3Apis || false,
       fastQuit: rawOptions.fastQuit || false,
       fileDownloadOptions: rawOptions.fileDownloadOptions,
@@ -148,7 +148,7 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
       'https://github.com/castlabs/electron-releases/releases/download/';
     log.warn(
       `\nATENCIÓN: Usando el ** nooficial** Electron de castLabs`,
-      "\nImplementa el módulo de descifrado de contenido Widevine (CDM) de Google para la reproducción habilitada para DRM.",
+      '\nImplementa el módulo de descifrado de contenido Widevine (CDM) de Google para la reproducción habilitada para DRM.',
       `\nSimplemente aborte y vuelva a ejecutar sin pasar la bandera de widevine al predeterminado ${DEFAULT_ELECTRON_VERSION}`,
     );
   }
