@@ -1,9 +1,10 @@
 import * as fs from 'fs';
 
+import axios from 'axios';
 import * as log from 'loglevel';
 
-// package.json is `require`d to let tsc strip the `src` folder by determining
-// baseUrl=src. A static import would prevent that and cause an ugly extra `src` folder in `lib`
+// package.json is `require`d para permitir que tsc elimine la carpeta `src` determinando
+// baseUrl=src. Una importación estática evitaría eso y causaría una fea carpeta extra `src` en `lib`
 const packageJson = require('../../package.json'); // eslint-disable-line @typescript-eslint/no-var-requires
 import {
   DEFAULT_ELECTRON_VERSION,
@@ -18,7 +19,7 @@ import { normalizeUrl } from './normalizeUrl';
 const SEMVER_VERSION_NUMBER_REGEX = /\d+\.\d+\.\d+[-_\w\d.]*/;
 
 /**
- * Process and validate raw user arguments
+ * Procesar y validar argumentos de usuario sin procesar
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function getOptions(rawOptions: any): Promise<AppOptions> {
@@ -38,7 +39,7 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
       overwrite: rawOptions.overwrite,
       platform: rawOptions.platform || inferPlatform(),
       targetUrl: normalizeUrl(rawOptions.targetUrl),
-      tmpdir: false, // workaround for electron-packager#375
+      tmpdir: false, // solución para electron-packager#375
       win32metadata: rawOptions.win32metadata || {
         ProductName: rawOptions.name,
         InternalName: rawOptions.name,
@@ -59,6 +60,8 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
       disableDevTools: rawOptions.disableDevTools,
       disableGpu: rawOptions.disableGpu || false,
       diskCacheSize: rawOptions.diskCacheSize || null,
+      disableOldBuildWarning:
+      rawOptions.disableOldBuildWarningYesiknowitisinsecure || false,
       enableEs3Apis: rawOptions.enableEs3Apis || false,
       fastQuit: rawOptions.fastQuit || false,
       fileDownloadOptions: rawOptions.fileDownloadOptions,
@@ -128,6 +131,26 @@ export async function getOptions(rawOptions: any): Promise<AppOptions> {
         `\nSimplemente aborte y vuelva a ejecutar sin pasar el indicador de versión al predeterminado ${DEFAULT_ELECTRON_VERSION}`,
       );
     }
+  }
+
+  if (rawOptions.widevine) {
+    const widevineElectronVersion = `${options.packager.electronVersion}-wvvmp`;
+    try {
+      await axios.get(
+        `https://github.com/castlabs/electron-releases/releases/tag/v${widevineElectronVersion}`,
+      );
+    } catch (error) {
+      throw `\nERROR: versión de castLabs Electron "${widevineElectronVersion}" no existe. \nVerificar versiones en https://github.com/castlabs/electron-releases/releases. \nAbortando.`;
+    }
+
+    options.packager.electronVersion = widevineElectronVersion;
+    process.env.ELECTRON_MIRROR =
+      'https://github.com/castlabs/electron-releases/releases/download/';
+    log.warn(
+      `\nATENCIÓN: Usando el ** nooficial** Electron de castLabs`,
+      "\nImplementa el módulo de descifrado de contenido Widevine (CDM) de Google para la reproducción habilitada para DRM.",
+      `\nSimplemente aborte y vuelva a ejecutar sin pasar la bandera de widevine al predeterminado ${DEFAULT_ELECTRON_VERSION}`,
+    );
   }
 
   if (options.nativefier.flashPluginDir) {

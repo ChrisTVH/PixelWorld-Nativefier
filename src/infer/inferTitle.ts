@@ -8,7 +8,7 @@ const USER_AGENT =
 export async function inferTitle(url: string): Promise<string> {
   const { data } = await axios.get(url, {
     headers: {
-      // Fake user agent for pages like http://messenger.com
+      // Agente de usuario falso para páginas como http://messenger.com
       'User-Agent': USER_AGENT,
     },
   });

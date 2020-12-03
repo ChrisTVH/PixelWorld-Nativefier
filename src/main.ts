@@ -5,8 +5,8 @@ import { buildNativefierApp } from './build/buildNativefierApp';
 export { buildNativefierApp };
 
 /**
- * Only for compatibility with Nativefier <= 7.7.1 !
- * Use the better, modern async `buildNativefierApp` instead if you can!
+ * Solo para compatibilidad con Nativefier <= 7.7.1 !
+ * ¡Use la mejor y moderna async `buildNativefierApp` en su lugar si puede!
  */
 function buildNativefierAppOldCallbackStyle(
   options: any, // eslint-disable-line @typescript-eslint/explicit-module-boundary-types

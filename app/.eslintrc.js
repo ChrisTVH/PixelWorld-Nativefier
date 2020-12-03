@@ -15,7 +15,7 @@ module.exports = {
   ],
   rules: {
     'prettier/prettier': 'error',
-    // TODO remove when done killing `any`s and making tsc strict
+    // TODO eliminar cuando haya terminado matando `any`s y haciendo tsc estricto
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',

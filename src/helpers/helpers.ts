@@ -6,7 +6,7 @@ import * as hasbin from 'hasbin';
 import { ncp } from 'ncp';
 import * as log from 'loglevel';
 import * as tmp from 'tmp';
-tmp.setGracefulCleanup(); // cleanup temp dirs even when an uncaught exception occurs
+tmp.setGracefulCleanup(); // limpieza de directorios temporales incluso cuando se produce una excepción no detectada
 
 const now = new Date();
 const TMP_TIME = `${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}`;
@@ -25,13 +25,13 @@ export function isWindows(): boolean {
 }
 
 /**
- * Create a temp directory with a debug-friendly name, and return its path.
- * Will be automatically deleted on exit.
+ * Cree un directorio temporal con un nombre compatible con la depuración y devuelva su ruta.
+ * Se eliminará automáticamente al salir.
  */
 export function getTempDir(prefix: string, mode?: number): string {
   return tmp.dirSync({
     mode,
-    unsafeCleanup: true, // recursively remove tmp dir on exit, even if not empty.
+    unsafeCleanup: true, // eliminar recursivamente tmp dir al salir, incluso si no está vacío.
     prefix: `nativefier-${TMP_TIME}-${prefix}-`,
   }).name;
 }
@@ -39,7 +39,7 @@ export function getTempDir(prefix: string, mode?: number): string {
 export async function copyFileOrDir(
   sourceFileOrDir: string,
   dest: string,
-): Promise<any> {
+): Promise<void> {
   return new Promise((resolve, reject) => {
     ncp(sourceFileOrDir, dest, (error: any) => {
       if (error) {
@@ -83,7 +83,7 @@ export function getAllowedIconFormats(platform: string): string[] {
 
   const formats = [];
 
-  // Shell scripting is not supported on windows, temporary override
+  // Las secuencias de comandos de shell no se admiten en Windows, anulación temporal
   if (isWindows()) {
     switch (platform) {
       case 'darwin':

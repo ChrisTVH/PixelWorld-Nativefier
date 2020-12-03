@@ -27,10 +27,10 @@ function checkApp(appRoot: string, inputOptions: any): void {
   const nativefierConfig = JSON.parse(fs.readFileSync(configPath).toString());
   expect(inputOptions.targetUrl).toBe(nativefierConfig.targetUrl);
 
-  // Test name inferring
+  // Inferir nombre de prueba
   expect(nativefierConfig.name).toBe('Google');
 
-  // Test icon writing
+  // Prueba de escritura del icono
   const iconFile =
     inputOptions.platform === 'darwin' ? '../electron.icns' : 'icon.png';
   const iconPath = path.join(appPath, iconFile);

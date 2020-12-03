@@ -11,11 +11,11 @@ export function sanitizeFilename(
 ): string {
   let result: string = sanitize(filenameToSanitize);
 
-  // remove all non ascii or use default app name
+  // eliminar todo lo que no sea ascii o usar el nombre de la aplicación predeterminada
   // eslint-disable-next-line no-control-regex
   result = result.replace(/[^\x00-\x7F]/g, '') || DEFAULT_APP_NAME;
 
-  // spaces will cause problems with Ubuntu when pinned to the dock
+  // los espacios causarán problemas con Ubuntu cuando se fijen al dock
   if (platform === 'linux') {
     result = result.replace(/ /g, '');
   }

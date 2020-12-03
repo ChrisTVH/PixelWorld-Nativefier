@@ -23,8 +23,8 @@ function iconIsIcns(iconPath: string): boolean {
 }
 
 /**
- * Will convert a `.png` icon to the appropriate arch format (if necessary),
- * and return adjusted options
+ * Convertirá un icono `.png` al formato de arco apropiado (si es necesario),
+ * y devolver opciones ajustadas
  */
 export async function convertIconIfNecessary(
   options: AppOptions,

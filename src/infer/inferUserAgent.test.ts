@@ -17,7 +17,7 @@ describe('Infer User Agent', () => {
     }
   });
 
-  // TODO make fast by mocking timeout, and un-skip
+  // TODO haz rápido burlándote del tiempo de espera y anula la omisión
   test.skip('Connection error will still get a user agent', async () => {
     jest.setTimeout(6000);
 

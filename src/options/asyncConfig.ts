@@ -4,7 +4,7 @@ import { processOptions } from './fields/fields';
 import { AppOptions } from './model';
 
 /**
- * Takes the options object and infers new values needing async work
+ * Toma el objeto de opciones e infiere nuevos valores que necesitan trabajo asincrónico
  */
 export async function asyncConfig(options: AppOptions): Promise<any> {
   log.debug('\nRealización de posprocesamiento de opciones asíncronas.');

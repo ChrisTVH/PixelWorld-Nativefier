@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-### USAGE
+### Uso
 
 # ./convertToIcns <input png> <outp icns>
-# Example
+# Ejemplo
 # ./convertToIcns ~/sample.png ~/Desktop/converted.icns
 
-# exit the shell script on error immediately
+# salga del script de shell en caso de error inmediatamente
 set -e
 
-# Exec Paths
+# Rutas de ejecución
 HAVE_IMAGEMAGICK=
 HAVE_ICONUTIL=
 HAVE_SIPS=
@@ -21,11 +21,11 @@ type sips &>/dev/null && HAVE_SIPS=true
 [[ -z "$HAVE_ICONUTIL" ]] && { echo >&2 "No se puede encontrar el ejecutable iconutil requerido"; exit 1; }
 [[ -z "$HAVE_IMAGEMAGICK" && -z "$HAVE_SIPS" ]] && { echo >&2 "No se puede encontrar el convertidor de imágenes requerido, instale sips o imagemagick"; exit 1; }
 
-# Parameters
+# Parámetros
 SOURCE="$1"
 DEST="$2"
 
-# Check source and destination arguments
+# Verifique los argumentos de origen y destino
 if [ -z "${SOURCE}" ]; then
 	echo "No se ha especificado ninguna imagen de origen"
 	exit 1
@@ -47,7 +47,7 @@ trap cleanUp EXIT
 
 "${BASH_SOURCE%/*}/convertToIconset" "${SOURCE}" "${ICONSET}"
 
-# Create an icns file lefrom the iconset
+# Cree un archivo icns a partir del conjunto de iconos
 iconutil -c icns "${ICONSET}" -o "${DEST}"
 
 trap - EXIT

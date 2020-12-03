@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-### USAGE
+### Uso
 
 # ./convertToIconset <input png> <outp iconset>
-# Example
+# Ejemplo
 # ./convertToIconset ~/sample.png ~/Desktop/converted.iconset
 
-# exit the shell script on error immediately
+# salga del script de shell en caso de error inmediatamente
 set -e
 
 make_iconset_imagemagick() {
@@ -35,11 +35,11 @@ make_iconset_sips() {
   done
 }
 
-# Parameters
+# Parametros
 SOURCE="$1"
 DEST="$2"
 
-# Check source and destination arguments
+# Verifique los argumentos de origen y destino
 if [ -z "${SOURCE}" ]; then
 	echo >&2 "No se ha especificado ninguna imagen de origen"; exit 1
 fi

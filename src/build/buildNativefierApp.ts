@@ -21,7 +21,7 @@ const OPTIONS_REQUIRING_WINDOWS_FOR_WINDOWS_BUILD = [
 ];
 
 /**
- * Checks the app path array to determine if packaging completed successfully
+ * Comprueba la matriz de la ruta de la aplicación para determinar si el empaquetado se completó correctamente
  */
 function getAppPath(appPath: string | string[]): string {
   if (!Array.isArray(appPath)) {
@@ -29,7 +29,7 @@ function getAppPath(appPath: string | string[]): string {
   }
 
   if (appPath.length === 0) {
-    return null; // directory already exists and `--overwrite` not set
+    return null; // el directorio ya existe y `--overwrite` no está configurado
   }
 
   if (appPath.length > 1) {
@@ -43,8 +43,8 @@ function getAppPath(appPath: string | string[]): string {
 }
 
 /**
- * For Windows & Linux, we have to copy over the icon to the resources/app
- * folder, which the BrowserWindow is hard-coded to read the icon from
+ * Para Windows y Linux, tenemos que copiar el ícono a los resources/app
+ * carpeta, en la que BrowserWindow está codificado para leer el icono desde
  */
 async function copyIconsIfNecessary(
   options: AppOptions,
@@ -64,10 +64,10 @@ async function copyIconsIfNecessary(
     return;
   }
 
-  // windows & linux: put the icon file into the app
-  const destAppPath = path.join(appPath, 'resources/app');
+  // Windows y Linux: coloque el archivo de icono en la aplicación
+  
   const destFileName = `icon${path.extname(options.packager.icon)}`;
-  const destIconPath = path.join(destAppPath, destFileName);
+  const destIconPath = path.join(appPath, destFileName);
 
   log.debug(`Copiar icono ${options.packager.icon} a`, destIconPath);
   await copyFileOrDir(options.packager.icon, destIconPath);
@@ -116,6 +116,7 @@ export async function buildNativefierApp(
   log.info('\nConversión de iconos...');
   options.packager.dir = tmpPath; // const optionsWithTmpPath = { ...options, dir: tmpPath };
   await convertIconIfNecessary(options);
+  await copyIconsIfNecessary(options, tmpPath);
 
   log.info(
     '\nEmpaquetado... Esto tomará unos segundos, tal vez minutos si el Electron solicitado aún no está en caché...',
@@ -126,7 +127,6 @@ export async function buildNativefierApp(
 
   log.info('\nFinalizando compilación...');
   const appPath = getAppPath(appPathArray);
-  await copyIconsIfNecessary(options, appPath);
 
   if (appPath) {
     let osRunHelp = '';

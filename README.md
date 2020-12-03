@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ChrisTVH/PixelWorld-Nativefier.svg?branch=master)](https://travis-ci.org/ChrisTVH/PixelWorld-Nativefier)
+[![Build Status](https://github.com/ChrisTVH/PixelWorld-Nativefier/workflows/ci/badge.svg)](https://github.com/ChrisTVH/PixelWorld-Nativefier/actions?query=workflow%3Aci)
 
 ## Introducción
 
@@ -52,14 +52,14 @@ Configure un enlace simbólico para que la ejecución de `nativefier` llame a su
 npm link
 # si tienes GNU/Linux ejecuta esto también
 which nativefier
-# -> Debería devolver un camino, e.g. /home/youruser/.node_modules/lib/node_modules/nativefier
+# -> Debería devolver un camino, e.g. /home/tu-usuario/.node_modules/lib/node_modules/nativefier
 # Si no, asegúrese de `npm_config_prefix` Env var está configurado y en tu `RUTA`
 ```
 
 Después de hacerlo, puede ejecutar Nativefier con sus parámetros de prueba:
 
 ```bash
-nativefier --tu-increible-nueva-bandera 'https://tu-stio-de-prueba.com'
+nativefier --tu-increíble-nueva-bandera 'https://tu-stio-de-prueba.com'
 ```
 
 Luego ejecute su aplicación nativefier _a través de la línea de comando también_ (para ver registros y errores):
@@ -99,4 +99,6 @@ pero es doloroso hacerlo manualmente. Hágase un favor e instale un
 
 ## Guía de Uso
 
-- [Dame un click para ir la guía basica](https://github.com/jiahaog/nativefier/blob/master/README.md).
+- [Dame un click para ir la guía basica](https://github.com/jiahaog/nativefier/blob/master/README.md)
+
+- [Proyecto Original](https://github.com/jiahaog/nativefier).

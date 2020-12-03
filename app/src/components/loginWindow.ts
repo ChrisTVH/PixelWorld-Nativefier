@@ -9,7 +9,7 @@ export function createLoginWindow(loginCallback): BrowserWindow {
     frame: false,
     resizable: false,
     webPreferences: {
-      nodeIntegration: true, // TODO work around this; insecure
+      nodeIntegration: true, // TODO trabaje alrededor de esto; inseguro
     },
   });
   // eslint-disable-next-line @typescript-eslint/no-floating-promises

@@ -8,8 +8,8 @@ import * as log from 'loglevel';
 import { buildNativefierApp } from './main';
 import { isWindows } from './helpers/helpers';
 
-// package.json is `require`d to let tsc strip the `src` folder by determining
-// baseUrl=src. A static import would prevent that and cause an ugly extra "src" folder
+// package.json is `require`d para permitir que tsc elimine la carpeta `src` determinando
+// baseUrl=src. Una importación estática evitaría eso y causaría una desagradable carpeta "src" adicional
 const packageJson = require('../package.json'); // eslint-disable-line @typescript-eslint/no-var-requires
 
 function collect(val: any, memo: any[]): any[] {
@@ -71,7 +71,7 @@ if (require.main === module) {
     if (sanitizedArgs.length > 0) {
       const previousArg = sanitizedArgs[sanitizedArgs.length - 1];
 
-      // Work around commander.js not supporting default argument for options
+      // Evite commander.js que no admite el argumento predeterminado para las opciones
       if (
         previousArg === '--tray' &&
         !['true', 'false', 'start-in-tray'].includes(arg)
@@ -117,6 +117,10 @@ if (require.main === module) {
     .option(
       '-e, --electron-version <valor>',
       "versión de electron a paquete, sin la 'v', consulte https://github.com/electron/electron/releases",
+    )
+    .option(
+      '--widevine',
+      'utilizar un Widevine-enabled versión de Electron para reproducción DRM (utilizar bajo su propio riesgo, no es oficial, proporcionado por CastLabs)',
     )
     .option(
       '--no-overwrite',
@@ -267,12 +271,12 @@ if (require.main === module) {
     )
     .option(
       '--processEnvs <json-string>',
-      'una cadena JSON de pares clave / valor que se configurará como variables de entorno antes de que se abra cualquier ventana del navegador',
+      'una cadena JSON de pares clave/valor que se configurará como variables de entorno antes de que se abra cualquier ventana del navegador',
       getProcessEnvs,
     )
     .option(
       '--file-download-options <json-string>',
-      'una cadena JSON de pares clave / valor que se configurará como opciones de descarga de archivos. Ver https://github.com/sindresorhus/electron-dl para conocer las opciones disponibles.',
+      'una cadena JSON de pares clave/valor que se configurará como opciones de descarga de archivos. Ver https://github.com/sindresorhus/electron-dl para conocer las opciones disponibles.',
       parseJson,
     )
     .option(
@@ -305,6 +309,10 @@ if (require.main === module) {
     .option(
       '--background-color <valor>',
       "establece el color de fondo de la aplicación, para una mejor integración mientras se carga la aplicación. Valor de ejemplo: '#2e2c29'",
+    )
+    .option(
+      '--disable-old-build-warning-yesiknowitisinsecure',
+      'Desactiva la advertencia al abrir una aplicación creada con una versión anterior de PixelWorld-Nativefier. PixelWorld-Nativefier usa el navegador Chrome (a través de Electron) y es peligroso seguir usando una versión anterior.)',
     )
     .option(
       '--darwin-dark-mode-support',

@@ -92,7 +92,7 @@ export function createMenu({
         label: 'AtrásAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
-        accelerator: 'CmdOrCtrl+[', // What old versions of Nativefier used, kept for backwards compat
+        accelerator: 'CmdOrCtrl+[', // Qué versiones antiguas de Nativefier usaban, guardadas para compatibilidad con versiones anteriores
         click: goBack,
       },
       {
@@ -108,7 +108,7 @@ export function createMenu({
         label: 'AdelanteAdditionalShortcut',
         visible: false,
         acceleratorWorksWhenHidden: true,
-        accelerator: 'CmdOrCtrl+]', // What old versions of Nativefier used, kept for backwards compat
+        accelerator: 'CmdOrCtrl+]', // Qué versiones antiguas de Nativefier usaban, guardadas para compatibilidad con versiones anteriores
         click: goForward,
       },
       {

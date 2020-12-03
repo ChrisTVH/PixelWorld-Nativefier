@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# USAGE
+# Uso
 
 # ./convertToIco <input png or ico> <outfilename>.ico
-# Example
+# Ejemplo
 # ./convertToPng ~/sample.png ~/converted.ico
 
 set -e

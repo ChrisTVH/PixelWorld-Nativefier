@@ -13,13 +13,13 @@ module.exports = {
       },
     ],
   },
-  // Don't mock __dirname; https://webpack.js.org/configuration/node/#root
+  // No te burles de __dirname; https://webpack.js.org/configuration/node/#root
   node: {
     __dirname: false,
   },
-  // Prevent bundling of certain imported packages and instead retrieve these
-  // external deps at runtime. This is what we want for electron, placed in the
-  // app by electron-packager. https://webpack.js.org/configuration/externals/
+  // Evite la agrupación de determinados paquetes importados y, en su lugar, recupere estos
+  // departamentos externos en tiempo de ejecución. Esto es lo que queremos para el electrón, colocado en el
+  // app por electron-packager. https://webpack.js.org/configuration/externals/
   externals: {
     electron: 'commonjs electron',
   },

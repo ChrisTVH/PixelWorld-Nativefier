@@ -4,7 +4,7 @@ import * as path from 'path';
 import { isOSX, isWindows, isLinux } from './helpers';
 
 /**
- * Find a file or directory
+ * Encuentra un archivo o directorio
  */
 function findSync(
   pattern: RegExp,

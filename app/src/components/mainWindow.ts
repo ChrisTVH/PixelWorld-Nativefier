@@ -26,14 +26,14 @@ function hideWindow(
   tray,
 ): void {
   if (isOSX() && !fastQuit) {
-    // this is called when exiting from clicking the cross button on the window
+    // esto se llama al salir de hacer clic en el botón de cruz en la ventana
     event.preventDefault();
     window.hide();
   } else if (!fastQuit && tray) {
     event.preventDefault();
     window.hide();
   }
-  // will close the window on other platforms
+  // cerrará la ventana en otras plataformas
 }
 
 function injectCss(browserWindow: BrowserWindow): void {
@@ -44,10 +44,10 @@ function injectCss(browserWindow: BrowserWindow): void {
   const cssToInject = getCssToInject();
 
   browserWindow.webContents.on('did-navigate', () => {
-    // We must inject css early enough; so onHeadersReceived is a good place.
-    // Will run multiple times, see `did-finish-load` below that unsets this handler.
+    // Debemos inyectar css lo suficientemente temprano; entonces onHeadersReceived es un buen lugar.
+    // Se ejecutará varias veces, consulte `did-finish-load` a continuación que desarma este controlador.
     browserWindow.webContents.session.webRequest.onHeadersReceived(
-      { urls: [] }, // Pass an empty filter list; null will not match _any_ urls
+      { urls: [] }, // Pase una lista de filtros vacía; nulo no coincidirá con _cualquier_ URL
       (details, callback) => {
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         browserWindow.webContents.insertCSS(cssToInject);
@@ -73,7 +73,7 @@ function setProxyRules(browserWindow: BrowserWindow, proxyRules): void {
 }
 
 /**
- * @param {{}} nativefierOptions AppArgs from nativefier.json
+ * @param {{}} nativefierOptions AppArgs de nativefier.json
  * @param {function} onAppQuit
  * @param {function} setDockBadge
  */
@@ -89,13 +89,13 @@ export function createMainWindow(
   });
 
   const DEFAULT_WINDOW_OPTIONS = {
-    // Convert dashes to spaces because on linux the app name is joined with dashes
+    // Convierta guiones en espacios porque en Linux el nombre de la aplicación está unido con guiones
     title: options.name,
     tabbingIdentifier: nativeTabsSupported() ? options.name : undefined,
     webPreferences: {
       javascript: true,
       plugins: true,
-      nodeIntegration: false, // `true` is *insecure*, and cause trouble with messenger.com
+      nodeIntegration: false, // `true` es * inseguro * y causa problemas con messenger.com
       webSecurity: !options.insecure,
       preload: path.join(__dirname, 'preload.js'),
       zoomFactor: options.zoom,
@@ -116,9 +116,9 @@ export function createMainWindow(
     y: options.y,
     autoHideMenuBar: !options.showMenuBar,
     icon: getAppIcon(),
-    // set to undefined and not false because explicitly setting to false will disable full screen
+    // establecido en indefinido y no falso porque establecer explícitamente en falso desactivará la pantalla completa
     fullscreen: options.fullScreen || undefined,
-    // Whether the window should always stay on top of other windows. Default is false.
+    // Si la ventana debe permanecer siempre encima de otras ventanas. El valor predeterminado es falso.
     alwaysOnTop: options.alwaysOnTop,
     titleBarStyle: options.titleBarStyle,
     show: options.tray !== 'start-in-tray',
@@ -129,7 +129,7 @@ export function createMainWindow(
 
   mainWindowState.manage(mainWindow);
 
-  // after first run, no longer force maximize to be true
+  // después de la primera ejecución, ya no fuerza a maximizar para que sea cierto
   if (options.maximize) {
     mainWindow.maximize();
     options.maximize = undefined;
@@ -144,6 +144,10 @@ export function createMainWindow(
         `WARNING: Ignored nativefier.json rewrital (${(err as Error).toString()})`,
       );
     }
+  }
+
+  if (options.tray === 'start-in-tray') {
+    mainWindow.hide();
   }
 
   const withFocusedWindow = (block: (window: BrowserWindow) => void): void => {
@@ -302,7 +306,7 @@ export function createMainWindow(
 
   const sendParamsOnDidFinishLoad = (window: BrowserWindow): void => {
     window.webContents.on('did-finish-load', () => {
-      // In children windows too: Restore pinch-to-zoom, disabled by default in recent Electron.
+      // También en ventanas para niños: Restaurar pellizcar para hacer zoom, deshabilitado por defecto en Electron reciente.
       // See https://github.com/jiahaog/nativefier/issues/379#issuecomment-598612128
       // and https://github.com/electron/electron/pull/12679
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -373,7 +377,7 @@ export function createMainWindow(
   mainWindow.webContents.on('new-window', onNewWindow);
   mainWindow.webContents.on('will-navigate', onWillNavigate);
   mainWindow.webContents.on('did-finish-load', () => {
-    // Restore pinch-to-zoom, disabled by default in recent Electron.
+    // Restaurar pellizcar para hacer zoom, desactivado de forma predeterminada en Electron reciente.
     // See https://github.com/jiahaog/nativefier/issues/379#issuecomment-598309817
     // and https://github.com/electron/electron/pull/12679
     // eslint-disable-next-line @typescript-eslint/no-floating-promises

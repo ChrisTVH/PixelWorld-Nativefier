@@ -52,10 +52,10 @@ export function getCssToInject(): string {
 }
 
 /**
- * Helper to print debug messages from the main process in the browser window
+ * Ayudante para imprimir mensajes de depuración del proceso principal en la ventana del navegador
  */
 export function debugLog(browserWindow: BrowserWindow, message: string): void {
-  // Need a delay, as it takes time for the preloaded js to be loaded by the window
+  // Necesita un retraso, ya que se necesita tiempo para que la ventana cargue los js precargados
   setTimeout(() => {
     browserWindow.webContents.send('debug', message);
   }, 3000);
@@ -63,7 +63,7 @@ export function debugLog(browserWindow: BrowserWindow, message: string): void {
 }
 
 export function getAppIcon(): string {
-  // Prefer ICO under Windows, see
+  // Prefiera ICO bajo Windows, consulte
   // https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions
   // https://www.electronjs.org/docs/api/native-image#supported-formats
   if (isWindows()) {

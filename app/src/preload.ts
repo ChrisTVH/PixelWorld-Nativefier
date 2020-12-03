@@ -1,7 +1,7 @@
 /**
- * Preload file that will be executed in the renderer process.
- * Note: This needs to be attached **prior to imports**, as imports
- * would delay the attachment till after the event has been raised.
+ * Precargar archivo que se ejecutará en el proceso de renderizado.
+ * Nota: Esto debe adjuntarse **antes de las importaciones**, ya que las importaciones
+ * retrasaría el archivo adjunto hasta que se haya planteado el evento.
  */
 document.addEventListener('DOMContentLoaded', () => {
   injectScripts(); // eslint-disable-line @typescript-eslint/no-use-before-define
@@ -14,9 +14,9 @@ import { ipcRenderer } from 'electron';
 
 const INJECT_JS_PATH = path.join(__dirname, '..', 'inject/inject.js');
 /**
- * Patches window.Notification to:
- * - set a callback on a new Notification
- * - set a callback for clicks on notifications
+ * Ventana de parches Notificación a:
+ * - establecer una devolución de llamada en una nueva notificación
+ * - establecer una devolución de llamada para los clics en las notificaciones
  * @param createCallback
  * @param clickCallback
  */
@@ -42,7 +42,7 @@ function injectScripts() {
   if (!needToInject) {
     return;
   }
-  // Dynamically require scripts
+  // Requiere scripts dinámicamente
   require(INJECT_JS_PATH);
 }
 

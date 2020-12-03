@@ -13,7 +13,7 @@ const SCRIPT_PATHS = {
 };
 
 /**
- * Executes a shell script with the form "./pathToScript param1 param2"
+ * Ejecuta un script de shell con el formulario "./pathToScript param1 param2"
  */
 async function iconShellHelper(
   shellScriptPath: string,

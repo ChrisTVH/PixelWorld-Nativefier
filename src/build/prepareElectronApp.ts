@@ -12,7 +12,7 @@ import { AppOptions } from '../options/model';
 const writeFileAsync = promisify(fs.writeFile);
 
 /**
- * Only picks certain app args to pass to nativefier.json
+ * Solo elige ciertos argumentos de la aplicación para pasar a nativefier.json
  */
 function pickElectronAppArgs(options: AppOptions): any {
   return {
@@ -64,9 +64,11 @@ function pickElectronAppArgs(options: AppOptions): any {
     versionString: options.nativefier.versionString,
     width: options.nativefier.width,
     win32metadata: options.packager.win32metadata,
+    disableOldBuildWarning: options.nativefier.disableOldBuildWarning,
     x: options.nativefier.x,
     y: options.nativefier.y,
     zoom: options.nativefier.zoom,
+    buildDate: new Date().getTime(),
   };
 }
 
@@ -82,7 +84,7 @@ async function maybeCopyScripts(srcs: string[], dest: string): Promise<void> {
   for (const src of srcs) {
     if (!fs.existsSync(src)) {
       throw new Error(
-        `Archivo ${src} extraviado. Tenga en cuenta que Nativefier espera archivos *locales*, no URL.`,
+        `Archivo ${src} extraviado. Tenga en cuenta que PixelWorld-Nativefier espera archivos *locales*, no URL.`,
       );
     }
 
@@ -102,7 +104,7 @@ async function maybeCopyScripts(srcs: string[], dest: string): Promise<void> {
 }
 
 function normalizeAppName(appName: string, url: string): string {
-  // use a simple 3 byte random string to prevent collision
+  // use una cadena aleatoria simple de 3 bytes para evitar colisiones
   const hash = crypto.createHash('md5');
   hash.update(url);
   const postFixHash = hash.digest('hex').substring(0, 6);
@@ -127,8 +129,8 @@ function changeAppPackageJsonName(
 }
 
 /**
- * Creates a temporary directory, copies the './app folder' inside,
- * and adds a text file with the app configuration.
+ * Crea un directorio temporal, copia la 'carpeta ./app' dentro,
+ * y agrega un archivo de texto con la configuración de la aplicación.
  */
 export async function prepareElectronApp(
   src: string,

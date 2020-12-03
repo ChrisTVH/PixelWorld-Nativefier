@@ -1,30 +1,30 @@
 FROM node:12-stretch
 LABEL description="Imagen de Debian para crear aplicaciones nativefier"
 
-# Get wine32, not 64, to work around binary incompatibility with rcedit.
+# Obtenga wine32, no 64, para solucionar la incompatibilidad binaria con rcedit.
 # https://github.com/jiahaog/nativefier/issues/375#issuecomment-304247033
-# Forced us to use Debian rather than Alpine, which doesn't do multiarch.
+# Nos obligó a usar Debian en lugar de Alpine, que no hace multiarch.
 RUN dpkg --add-architecture i386
 
-# Install dependencies
+# Instalar dependencias
 RUN apt-get update \
     && apt-get --yes install wine32 imagemagick \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add sources
+# Agregar fuentes
 COPY . /nativefier
 
-# Build nativefier and link globally
+# Construya nativefier y enlace globalmente
 WORKDIR /nativefier/app
 RUN npm install
 WORKDIR /nativefier
 RUN npm install && npm run build && npm link
 
-# Use 1000 as default user not root
+# Utilice 1000 como usuario predeterminado, no root
 USER 1000
 
-# Run a {lin,mac,win} build: 1. to check installation was sucessful,
-# 2. to cache electron distributables and avoid downloads at runtime.
+# Ejecutar un {lin,mac,win} compilación: 1. para comprobar que la instalación se realizó correctamente
+# 2. almacenar en caché los distribuibles de electron y evitar descargas en tiempo de ejecución.
 RUN nativefier https://github.com/jiahaog/nativefier /tmp/nativefier \
     && nativefier -p osx https://github.com/jiahaog/nativefier /tmp/nativefier \
     && nativefier -p windows https://github.com/jiahaog/nativefier /tmp/nativefier \
