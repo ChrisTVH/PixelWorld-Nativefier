@@ -139,3 +139,10 @@ export function getAllowedIconFormats(platform: string): string[] {
   log.debug(`Formatos de icono permitidos al crear para ${platform}:`, formats);
   return formats;
 }
+
+export function isArgFormatValid(arg: string): boolean {
+  return (
+    /^-[a-z]$/i.exec(arg) !== null ||
+    /^--[a-z]{2,}(-[a-z]{2,})*$/i.exec(arg) !== null
+  );
+}

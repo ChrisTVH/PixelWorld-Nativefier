@@ -6,6 +6,7 @@ import * as dns from 'dns';
 import * as log from 'loglevel';
 
 import { buildNativefierApp } from './main';
+import { isArgFormatValid } from './helpers/helpers';
 import { isWindows } from './helpers/helpers';
 
 // package.json is `require`d para permitir que tsc elimine la carpeta `src` determinando
@@ -68,6 +69,12 @@ function checkInternet(): void {
 if (require.main === module) {
   const sanitizedArgs = [];
   process.argv.forEach((arg) => {
+    if (isArgFormatValid(arg) === false) {
+      log.error(
+        `Se pasó un argumento no válido: ${arg} .\nPixelWorld-Nativefier admite opciones cortas (como "-n") y opciones largas (como "--name"), todo en minúsculas. ejecutar "nativefier --help" para Ayuda.\nAbortando.`,
+      );
+      process.exit(1);
+    }
     if (sanitizedArgs.length > 0) {
       const previousArg = sanitizedArgs[sanitizedArgs.length - 1];
 
